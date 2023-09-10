@@ -13,6 +13,7 @@ public class Piece : MonoBehaviour
         this.square.Depart(this);
         square.Arrive(this);
         this.moved = true;
+        Game.turn++;
     }
     public virtual void Die(Piece killer) {
         square.Depart(this);

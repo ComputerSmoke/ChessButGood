@@ -66,7 +66,7 @@ public class Square : MonoBehaviour
         defaultColor = gameObject.GetComponent<SpriteRenderer>().color;
     }
     void Update() {
-        bool highlighted = board.game.HighlightSquares().Contains(this);
+        bool highlighted = Game.HighlightSquares().Contains(this);
         SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
         if(!highlighted) 
             renderer.color = defaultColor;

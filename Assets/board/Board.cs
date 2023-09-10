@@ -5,10 +5,10 @@ using UnityEngine;
 public class Board : ScriptableObject
 {
     public Dictionary<(int, int, int), Square> squares;
-    public Game game;
-    public void Init(Game game) {
+    public int id;
+    public void Init(int id) {
         squares = new ();
-        this.game = game;
+        this.id = id;
     }
     public void AddSquare(GameObject square, int x, int y, int z) {
         Square squareScript = square.GetComponent<Square>();
@@ -24,6 +24,7 @@ public class Board : ScriptableObject
     }
     public void CreatePiece(GameObject prefab, Square square) {
         GameObject piece = Instantiate(prefab, Board.Pos(square.x, square.y), Quaternion.identity);
+        piece.GetComponent<SpriteRenderer>().sortingLayerName = "Pieces";
         square.Place(piece);
     }
 }

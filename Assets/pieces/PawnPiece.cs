@@ -8,7 +8,7 @@ public class PawnPiece : Piece
         List<Square> squaresBetween = SquaresBetween(this.square, square);
         foreach(Square intermittent in squaresBetween) {
             ShadowVuln trigger = ScriptableObject.CreateInstance<ShadowVuln>();
-            trigger.Init(this, square.board.game.turn);
+            trigger.Init(this, Game.turn);
             intermittent.triggers.Add(trigger);
         }
         base.Move(square);
@@ -16,9 +16,9 @@ public class PawnPiece : Piece
             //TODO: add option to promote to non-queen pieces
             Die(this);
             if(color == 0) 
-                square.board.CreatePiece(square.board.game.initializer.whiteQueen, square);
+                square.board.CreatePiece(Game.initializer.whiteQueen, square);
             else 
-                square.board.CreatePiece(square.board.game.initializer.blackQueen, square);
+                square.board.CreatePiece(Game.initializer.blackQueen, square);
         }
     }
     private List<Square> SquaresBetween(Square square1, Square square2) {

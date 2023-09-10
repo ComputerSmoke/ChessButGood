@@ -16,7 +16,7 @@ public class ShadowVuln : Trigger
     }
     public override bool IsCapture(Piece arrival) {
         if(piece == null) return false;
-        int currentTurn = piece.square.board.game.turn;
+        int currentTurn = Game.turn;
         return currentTurn - turn < 2 && arrival.color != piece.color && arrival.eatShadows;
     }
 }

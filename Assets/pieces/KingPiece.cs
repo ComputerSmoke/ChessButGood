@@ -13,6 +13,7 @@ public class KingPiece : Piece
                 this.square.Depart(this);
                 adjacent2.Arrive(this);
             }
+            Game.turn++;
         } else
             base.Move(square);
     }

@@ -18,17 +18,18 @@ public class Initializer : MonoBehaviour
     public GameObject blackBishop;
     public GameObject whiteSquare;
     public GameObject blackSquare;
-    private Game game;
+    public GameObject moveSignal;
     // Start is called before the first frame update
     void Start()
     {
         Controls.BindKeys();
-        game = ScriptableObject.CreateInstance<Game>();
-        game.earth = ScriptableObject.CreateInstance<Board>();
-        game.earth.Init(game);
-        game.initializer = this;
-        MakeBoard(game.earth);
-        PlacePieces(game.earth);
+        Game.earth = ScriptableObject.CreateInstance<Board>();
+        Game.earth.Init(0);
+        Game.initializer = this;
+        MakeBoard(Game.earth);
+        PlacePieces(Game.earth);
+        Multiunity.Unity.MultiSession.Connect(11_000);
+        Multiunity.Unity.MultiSession.Join(1);
     }
     private void MakeBoard(Board board) {
         for(int i = 0; i < 8; i++) {
@@ -71,6 +72,6 @@ public class Initializer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        game.Update();
+        Game.Update();
     }
 }
