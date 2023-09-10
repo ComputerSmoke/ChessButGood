@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8611779388948176434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799088762954393472}
+  - component: {fileID: 4997645026089192955}
+  m_Layer: 0
+  m_Name: Initializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799088762954393472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611779388948176434}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16904137, y: 0.019239934, z: 0.040548425}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4997645026089192955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611779388948176434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69dcaef70e9fb094bba1c75bb725244b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteKing: {fileID: 85187929112223210, guid: 3727388133e9e5c4180cc91de541a043, type: 3}
+  whiteQueen: {fileID: 5093116461041526547, guid: bd1e369e9fb60e041b509c20d22a0904, type: 3}
+  whitePawn: {fileID: 1762314491132818387, guid: 0ad7a08019d067f48ae8b28e813b703d, type: 3}
+  whiteKnight: {fileID: 1465965256985278725, guid: 825eb0a4de002c545859247d69e50f33, type: 3}
+  whiteRook: {fileID: 4628042503045162094, guid: 029bb8127d6e0db4baa744e483e72382, type: 3}
+  whiteBishop: {fileID: 2669516469648037835, guid: ff090aa52f0afd44eb684c3be55654ab, type: 3}
+  blackKing: {fileID: 0}
+  blackQueen: {fileID: 0}
+  blackPawn: {fileID: 0}
+  blackKnight: {fileID: 0}
+  blackRook: {fileID: 0}
+  blackBishop: {fileID: 0}
+  whiteSquare: {fileID: 8708499971422287650, guid: e273a6eb20c9f1547911de42ff825994, type: 3}
+  blackSquare: {fileID: 8708499971422287650, guid: 1e7a2c3ab7da57d4ea10761edc90b177, type: 3}
