@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8535003071292266705}
   - component: {fileID: 4428615514553450572}
+  - component: {fileID: 12840916908982362}
+  - component: {fileID: 1324130319181625645}
   m_Layer: 0
   m_Name: white_rook
   m_TagString: Untagged
@@ -84,3 +86,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &12840916908982362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628042503045162094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb417f8917430dc469bd86e66e463a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  square: {fileID: 0}
+  moved: 0
+  color: 0
+  eatShadows: 0
+  enableCastle: 1
+--- !u!114 &1324130319181625645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628042503045162094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directions:
+  - {x: 1, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: -1, z: 0}
+  distance: 0

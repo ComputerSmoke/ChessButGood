@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5637838729653527836}
   - component: {fileID: 7512127563941535723}
+  - component: {fileID: 8958271271488072339}
+  - component: {fileID: 4044392537978283342}
   m_Layer: 0
   m_Name: white_knight
   m_TagString: Untagged
@@ -84,3 +86,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8958271271488072339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465965256985278725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb417f8917430dc469bd86e66e463a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  square: {fileID: 0}
+  moved: 0
+  color: 0
+--- !u!114 &4044392537978283342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465965256985278725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37111b6a428b0b247954ddcf3df00484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directions:
+  - {x: 2, y: 1, z: 0}
+  - {x: 2, y: -1, z: 0}
+  - {x: -2, y: 1, z: 0}
+  - {x: -2, y: -1, z: 0}
+  - {x: 1, y: 2, z: 0}
+  - {x: 1, y: -2, z: 0}
+  - {x: -1, y: 2, z: 0}
+  - {x: -1, y: -2, z: 0}

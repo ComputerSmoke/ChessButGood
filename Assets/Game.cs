@@ -8,44 +8,40 @@ public class Game : ScriptableObject
     public Board earth;
     private Piece selected;
     private HashSet<Square> highlightSquares;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int turn = 0;
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
         highlightSquares = null;
         if(Controls.KeyDown(Controls.Key.LMB)) {
             Vector3 mousePos = Controls.MousePos();
-            (int, int, int) gridPos = GridPos(mousePos);
+            (int, int, int) gridPos = Board.GridPos(mousePos);
+            Debug.Log("mouse click at: " + gridPos);
             if(earth.squares.ContainsKey(gridPos)) {
                 Square square = earth.squares[gridPos];
-                if(selected != null)
-                    MoveClick(square);
-                else
-                    SelectClick(square);
+                ClickSquare(square);
             }
         }
     }
 
-    private void MoveClick(Square square) {
-        if(selected.square == square) {
+    private void ClickSquare(Square square) {
+        if(selected != null && selected.CanReach(square))
+            MoveSelected(square);
+        if(square.piece != null && square.piece.color == turn%2 && square.piece != selected)
+            selected = square.piece;
+        else if(selected != null && selected.square == square) 
             selected = null;
-            return;
-        }
-        //TODO: move piece
+        else if(selected != null)
+            MoveSelected(square);
     } 
-    private void SelectClick(Square square) {
-        if(square.piece == null) return;
-        selected = square.piece;
+    private void MoveSelected(Square square) {
+        if(selected.color != turn%2 || !selected.CanReach(square)) 
+            return;
+        selected.Move(square);
+        turn++;
+        selected = null;
     }
-    private static (int, int, int) GridPos(Vector3 pos) {
-        return ((int)(pos.x + 4), (int)(pos.y + 4), 0);
-    }
-    private HashSet<Square> HighlightSquares() {
+    public HashSet<Square> HighlightSquares() {
         if(highlightSquares == null) {
             if(selected == null)
                 highlightSquares = new HashSet<Square>();

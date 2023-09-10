@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8760628723480416881}
   - component: {fileID: 8542427663134830600}
+  - component: {fileID: 682923566301374253}
+  - component: {fileID: 7668102699518421612}
   m_Layer: 0
   m_Name: black_bishop
   m_TagString: Untagged
@@ -84,3 +86,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &682923566301374253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183556717193143105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb417f8917430dc469bd86e66e463a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  square: {fileID: 0}
+  moved: 0
+  color: 1
+--- !u!114 &7668102699518421612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183556717193143105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directions:
+  - {x: 1, y: 1, z: 0}
+  - {x: 1, y: -1, z: 0}
+  - {x: -1, y: 1, z: 0}
+  - {x: -1, y: -1, z: 0}
+  distance: 0
