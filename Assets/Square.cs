@@ -17,6 +17,7 @@ public class Square : MonoBehaviour
         this.piece = piece;
         piece.square = this;
         piece.gameObject.transform.position = Board.Pos(x, y);
+        piece.gameObject.layer = board.id;
     }
     public void Depart(Piece piece) {
         if(piece != this.piece)
@@ -25,11 +26,7 @@ public class Square : MonoBehaviour
         piece.square = null;
     }
     public void Place(GameObject piece) {
-        this.piece = piece.GetComponent<Piece>();
-        if(this.piece == null)
-            Debug.Log("Warning! Placing piece without Piece script.");
-        else
-            this.piece.square = this;
+        Arrive(piece.GetComponent<Piece>());
     }
     public void SetPos(int x, int y, int z) {
         this.x = x;

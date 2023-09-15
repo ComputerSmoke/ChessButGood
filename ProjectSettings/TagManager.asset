@@ -11,13 +11,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Earth
+  - Hell
+  - Heaven
+  - ShopsMenu
+  - GunShop
+  - MageShop
+  - MercShop
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1412609813
     locked: 0
   - name: Boards
     uniqueID: 518811369

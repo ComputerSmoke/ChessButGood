@@ -18,29 +18,48 @@ public class Initializer : MonoBehaviour
     public GameObject blackBishop;
     public GameObject whiteSquare;
     public GameObject blackSquare;
+    public GameObject blackSquareHell;
+    public GameObject whiteSquareHell;
+    public GameObject blackSquareHeaven;
+    public GameObject whiteSquareHeaven;
     public GameObject moveSignal;
+    public GameObject mainMenu;
+    public Camera mainCamera;
+    public GameObject layerControllerObject;
+    private LayerController layerController;
+    public GameObject gameUI;
     // Start is called before the first frame update
     void Start()
     {
+        gameUI.SetActive(false);
+        layerController = layerControllerObject.GetComponent<LayerController>();
+        layerController.Init(mainCamera);
         Controls.BindKeys();
-        Game.earth = ScriptableObject.CreateInstance<Board>();
-        Game.earth.Init(0);
-        Game.initializer = this;
-        MakeBoard(Game.earth);
-        PlacePieces(Game.earth);
+    }
+    public void Online() {//TODO: set color and stuff after adding menus for create/join lobbies
+        StartGame();
         Multiunity.Unity.MultiSession.Connect(11_000);
         Multiunity.Unity.MultiSession.Join(1);
     }
-    private void MakeBoard(Board board) {
-        for(int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                GameObject prefab;
-                if((i+j)%2 == 1) prefab = whiteSquare;
-                else prefab = blackSquare;
-                GameObject square = Instantiate(prefab, Board.Pos(i, j), Quaternion.identity);
-                board.AddSquare(square, i, j, 0);
-            }
-        }
+    public void Local() {
+        Game.myColors = new List<int>();
+        Game.myColors.Add(0);
+        Game.myColors.Add(1);
+        StartGame();
+    }
+    private void StartGame() {
+        mainMenu.SetActive(false);
+        gameUI.SetActive(true);
+        Game.earth = ScriptableObject.CreateInstance<Board>();
+        Game.earth.Init(LayerMask.NameToLayer("Earth"), whiteSquare, blackSquare);
+        Game.hell = ScriptableObject.CreateInstance<Board>();
+        Game.hell.Init(LayerMask.NameToLayer("Hell"), whiteSquareHell, blackSquareHell);
+        Game.heaven = ScriptableObject.CreateInstance<Board>();
+        Game.heaven.Init(LayerMask.NameToLayer("Heaven"), whiteSquareHeaven, blackSquareHeaven);
+        Game.initializer = this;
+        PlacePieces(Game.earth);
+        Game.playing = true;
+        layerController.SetLayer("Earth");
     }
     public void PlacePieces(Board board) {
         PlacePiece(whiteRook, 0, 0, board);
@@ -72,6 +91,6 @@ public class Initializer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Game.Update();
+        Game.Update(layerController.ActiveBoard());
     }
 }
