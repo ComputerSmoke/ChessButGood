@@ -11,6 +11,7 @@ public class Piece : MonoBehaviour
     public bool eatSouls;
     public bool enableCastle;
     public bool blessed;
+    public int xp;
     public virtual void Move(Square square) {
         this.square.Depart(this);
         square.Arrive(this);
@@ -20,6 +21,17 @@ public class Piece : MonoBehaviour
     public virtual void Die(Piece killer) {
         Square prevSquare = square;
         square.Depart(this);
+        killer.xp++;
+        if(Game.firstBlood) {
+            killer.xp++;
+            Game.firstBlood = false;
+        }
+        if(killer.color == 0) {
+            Game.whiteGold++;
+            Debug.Log("white gold");
+        }
+        else if(killer.color == 1) 
+            Game.blackGold++;
         if(killer.eatSouls || prevSquare.board.id != Game.earth.id)
             Object.Destroy(this.gameObject);
         else if(blessed)

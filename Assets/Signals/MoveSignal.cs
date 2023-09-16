@@ -45,15 +45,4 @@ public class MoveSignal : Signal
         square.piece.Move(target);
         Forward();
     }
-    //To use half the byte for negative numbers
-    private static byte Shrink(int x) {
-        if(x >= 0) 
-            return (byte)x;
-        return (byte)(255+x);
-    }
-    private static int Grow(byte x) {
-        if(x < 128) 
-            return (int)x;
-        return (int)x-255;
-    }
 }

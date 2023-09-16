@@ -8,6 +8,8 @@ public class Board : ScriptableObject
     public int id;
     private GameObject whiteSquare;
     private GameObject blackSquare;
+    private int minRow;
+    private int maxRow;
     public void Init(int id, GameObject whiteSquare, GameObject blackSquare) {
         squares = new ();
         this.id = id;
@@ -17,6 +19,8 @@ public class Board : ScriptableObject
             for(int j = 0; j < 8; j++) 
                 ForceSquare((i, j, 0));
         }
+        minRow = 0;
+        maxRow = 7;
     }
     private void AddSquare(GameObject square, int x, int y, int z) {
         Square squareScript = square.GetComponent<Square>();
@@ -28,7 +32,7 @@ public class Board : ScriptableObject
     public static Vector3 Pos(int col, int row) {
         return new Vector3((float)col - 3.5f, (float)row - 3.5f, 0);
     }
-    public static (int, int, int) GridPos(Vector3 pos) {
+    public static (int, int, int) GridPos(Vector3 pos) {//TODO: somehow getting y=0 when clicking rank -1 added by mercs
         return ((int)(pos.x + 4), (int)(pos.y + 4), 0);
     }
     public void CreatePiece(GameObject prefab, Square square) {
@@ -54,5 +58,35 @@ public class Board : ScriptableObject
         square.GetComponent<SpriteRenderer>().sortingLayerName = "Boards";
         AddSquare(square, x, y, z);
         return squares[pos];
+    }
+    public bool AllPlaceOccupied(int color) {
+        return OpenSquares(color).Count == 0;
+    }
+    public void ExpandBackrow(int color) {
+        int y;
+        if(color == 0)
+            y = minRow - 1;
+        else
+            y = maxRow + 1;
+        for(int x = 0; x < 8; x++) 
+            ForceSquare((x, y, 0));
+    }
+    public HashSet<Square> OpenSquares(int side) {
+        HashSet<Square> res = new HashSet<Square>();
+        int start,end;
+        if(side == 0) {
+            start = minRow;
+            end = 3;
+        } else {
+            start = 4;
+            end = maxRow;
+        }
+        for(int x = 0; x < 8; x++) {
+            for(int y = start; y <= end; y++) {
+                if(squares.ContainsKey((x, y, 0)) && squares[(x, y, 0)].piece == null)
+                    res.Add(squares[(x, y, 0)]);
+            }
+        }
+        return res;
     }
 }

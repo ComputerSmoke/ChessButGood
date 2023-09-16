@@ -26,8 +26,10 @@ public class Initializer : MonoBehaviour
     public GameObject mainMenu;
     public Camera mainCamera;
     public GameObject layerControllerObject;
-    private LayerController layerController;
+    public LayerController layerController;
     public GameObject gameUI;
+    public GameObject chargeSignal;
+    public GameObject createPieceSignal;
     // Start is called before the first frame update
     void Start()
     {

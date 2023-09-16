@@ -13,6 +13,10 @@ public class LayerController : MonoBehaviour
     public void Init(Camera newCamera) {
         mainCamera = newCamera;
     }
+    public void ButtonSetLayer(string layerName) {
+        if(Game.placing == null)
+            SetLayer(layerName);
+    }
     public void SetLayer(string layerName) {
         layer = LayerMask.NameToLayer(layerName);
         EnableUI(layer);

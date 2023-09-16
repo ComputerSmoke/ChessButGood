@@ -9,6 +9,7 @@ public class PieceListing : MonoBehaviour
     public GameObject blackPiece;
     private SpriteRenderer whiteRenderer;
     private SpriteRenderer blackRenderer;
+    public int price;
     private Image img;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,24 @@ public class PieceListing : MonoBehaviour
             img.sprite = blackRenderer.sprite;
     }
     public void Buy() {
-        Debug.Log("Buy more!");
+        if(TurnGold() < price)
+            return;
+        Charge(price);
+        Game.ChoosePlacement(Piece());
+    }
+    private GameObject Piece() {
+        if(Game.turn%2 == 0)
+            return whitePiece;
+        return blackPiece;
+    }
+    private static void Charge(int amount) {
+        ChargeSignal charge = Instantiate(Game.initializer.chargeSignal).GetComponent<ChargeSignal>();
+        charge.Init(Game.turn % 2, amount);
+        charge.Execute();
+    }
+    private static int TurnGold() {
+        if(Game.turn%2 == 0)
+            return Game.whiteGold;
+        return Game.blackGold;
     }
 }
