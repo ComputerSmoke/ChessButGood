@@ -50,6 +50,9 @@ public class Initializer : MonoBehaviour
         StartGame();
     }
     private void StartGame() {
+        //TODO: reduce starting gold, high for testing
+        Game.whiteGold = 20;
+        Game.blackGold = 20;
         mainMenu.SetActive(false);
         gameUI.SetActive(true);
         Game.earth = ScriptableObject.CreateInstance<Board>();

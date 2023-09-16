@@ -102,7 +102,11 @@ MonoBehaviour:
   moved: 0
   color: 1
   eatShadows: 0
+  eatSouls: 0
   enableCastle: 0
+  blessed: 0
+  loot: 1
+  xp: 0
 --- !u!114 &1606571600666324452
 MonoBehaviour:
   m_ObjectHideFlags: 0

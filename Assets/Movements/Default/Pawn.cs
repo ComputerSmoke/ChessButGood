@@ -6,13 +6,14 @@ public class Pawn : Movement
 {
     public Vector3 direction;
     public override List<Square> ValidSquares() {
-        Piece piece = this.gameObject.GetComponent<Piece>();
         List<Square> res = new List<Square>();
         AppendForward(res, piece);
         AppendCaptures(res, piece);
         return res;
     }
     private void AppendForward(List<Square> res, Piece piece) {
+        if(piece.square == null)
+            return;
         if(piece.square.TryAdjacent(Movement.IntVec(direction), out Square forward) && forward.piece == null) {
             res.Add(forward);
             AppendDouble(res, piece, forward);
@@ -34,16 +35,5 @@ public class Pawn : Movement
             if(!target.HasCapture(piece)) return;
             res.Add(target);
         }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

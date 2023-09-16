@@ -101,6 +101,12 @@ MonoBehaviour:
   square: {fileID: 0}
   moved: 0
   color: 1
+  eatShadows: 0
+  eatSouls: 0
+  enableCastle: 0
+  blessed: 1
+  loot: 1
+  xp: 0
 --- !u!114 &7668102699518421612
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,8 +22,9 @@ public class GoldIndicator : MonoBehaviour
             Object.Destroy(coin);
         }
         while(coins.Count < target) {
-            GameObject coin = Instantiate(coinPrefab, new Vector3(((float)coins.Count) / 5f + gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity, gameObject.transform);
+            GameObject coin = Instantiate(coinPrefab, new Vector3(((float)(coins.Count%10)) / 5f + gameObject.transform.position.x, -((float)(coins.Count/10)) / 5f + gameObject.transform.position.y, 0), Quaternion.identity, gameObject.transform);
             coin.GetComponent<SpriteRenderer>().sortingLayerName = "Pieces";
+            coin.GetComponent<SpriteRenderer>().sortingOrder = coins.Count;
             coins.Push(coin);
         }
     }

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -416004783
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ce5e9678decc9334c9a8f19c9a6215cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,7 +102,11 @@ MonoBehaviour:
   moved: 0
   color: 0
   eatShadows: 0
+  eatSouls: 0
   enableCastle: 0
+  blessed: 0
+  loot: 1
+  xp: 0
 --- !u!114 &6111111382245042893
 MonoBehaviour:
   m_ObjectHideFlags: 0

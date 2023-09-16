@@ -13,8 +13,8 @@ public class PawnPiece : Piece
         }
         base.Move(square);
         if(!square.TryAdjacent(gameObject.GetComponent<Pawn>().direction, out Square adj)) {
-            //TODO: add option to promote to non-queen pieces
-            Die(this);
+            //TODO: add option to promote to non-queen pieces, promote to demon in hell
+            Object.Destroy(this.gameObject);
             if(color == 0) 
                 square.board.CreatePiece(Game.initializer.whiteQueen, square);
             else 

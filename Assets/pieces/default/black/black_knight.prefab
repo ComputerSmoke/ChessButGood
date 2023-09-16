@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1771563315682027098}
   - component: {fileID: 2631362695960557921}
   - component: {fileID: 3465752130304372206}
-  - component: {fileID: 7350457773167194064}
+  - component: {fileID: 1265074158951134780}
   m_Layer: 0
   m_Name: black_knight
   m_TagString: Untagged
@@ -101,7 +101,13 @@ MonoBehaviour:
   square: {fileID: 0}
   moved: 0
   color: 1
---- !u!114 &7350457773167194064
+  eatShadows: 0
+  eatSouls: 0
+  enableCastle: 0
+  blessed: 1
+  loot: 1
+  xp: 0
+--- !u!114 &1265074158951134780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,15 +116,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7560278818459568614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37111b6a428b0b247954ddcf3df00484, type: 3}
+  m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   directions:
   - {x: 1, y: 2, z: 0}
-  - {x: -1, y: 2, z: 0}
-  - {x: 2, y: -1, z: 0}
-  - {x: 2, y: 1, z: 0}
   - {x: 1, y: -2, z: 0}
+  - {x: -1, y: 2, z: 0}
   - {x: -1, y: -2, z: 0}
+  - {x: 2, y: 1, z: 0}
+  - {x: 2, y: -1, z: 0}
   - {x: -2, y: 1, z: 0}
   - {x: -2, y: -1, z: 0}
+  distance: 1

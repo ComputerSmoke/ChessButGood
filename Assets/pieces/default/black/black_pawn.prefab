@@ -115,3 +115,8 @@ MonoBehaviour:
   moved: 0
   color: 1
   eatShadows: 1
+  eatSouls: 0
+  enableCastle: 0
+  blessed: 0
+  loot: 1
+  xp: 0

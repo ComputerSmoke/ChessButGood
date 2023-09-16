@@ -11,6 +11,7 @@ public class Piece : MonoBehaviour
     public bool eatSouls;
     public bool enableCastle;
     public bool blessed;
+    public bool loot;
     public int xp;
     public virtual void Move(Square square) {
         this.square.Depart(this);
@@ -19,26 +20,28 @@ public class Piece : MonoBehaviour
         Game.turn++;
     }
     public virtual void Die(Piece killer) {
-        Square prevSquare = square;
         square.Depart(this);
+        GiveRewards(killer);
+        if(killer.eatSouls || square.board != Game.earth)
+            Object.Destroy(this.gameObject);
+        else if(blessed)
+            Game.heaven.PlacePiece(this, square);
+        else
+            Game.hell.PlacePiece(this, square);
+
+    }
+    protected virtual void GiveRewards(Piece killer) {
         killer.xp++;
         if(Game.firstBlood) {
             killer.xp++;
             Game.firstBlood = false;
         }
-        if(killer.color == 0) {
+        if(!killer.loot)
+            return;
+        if(killer.color == 0)
             Game.whiteGold++;
-            Debug.Log("white gold");
-        }
         else if(killer.color == 1) 
             Game.blackGold++;
-        if(killer.eatSouls || prevSquare.board.id != Game.earth.id)
-            Object.Destroy(this.gameObject);
-        else if(blessed)
-            Game.heaven.PlacePiece(this, prevSquare);
-        else
-            Game.hell.PlacePiece(this, prevSquare);
-
     }
     public Movement Movement() {
         return this.gameObject.GetComponent<Movement>();

@@ -12,18 +12,18 @@ public class Square : MonoBehaviour
     public void Arrive(Piece piece) {
         foreach(Trigger trigger in triggers)
             trigger.Arrive(piece);
-        if(this.piece != null) 
-            this.piece.Die(piece);
+        Piece prevPiece = this.piece;
         this.piece = piece;
         piece.square = this;
         piece.gameObject.transform.position = Board.Pos(x, y);
         piece.gameObject.layer = board.id;
+        if(prevPiece != null) 
+            prevPiece.Die(piece);
     }
     public void Depart(Piece piece) {
         if(piece != this.piece)
             return;
         this.piece = null;
-        piece.square = null;
     }
     public void Place(GameObject piece) {
         Arrive(piece.GetComponent<Piece>());
