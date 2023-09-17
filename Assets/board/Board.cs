@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Board : ScriptableObject
+public abstract class Board : ScriptableObject
 {
     public Dictionary<(int, int, int), Square> squares;
     public int id;
-    private GameObject whiteSquare;
-    private GameObject blackSquare;
-    private int minRow;
-    private int maxRow;
-    public void Init(int id, GameObject whiteSquare, GameObject blackSquare) {
+    protected GameObject whiteSquare;
+    protected GameObject blackSquare;
+    protected int minRow;
+    protected int maxRow;
+    protected float prevPieceRotation;
+    public abstract void Init();
+    protected abstract void InitPieces();
+    protected virtual void CreateBoard() {
         squares = new ();
-        this.id = id;
-        this.whiteSquare = whiteSquare;
-        this.blackSquare = blackSquare;
         for(int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) 
                 ForceSquare((i, j, 0));
@@ -22,7 +22,7 @@ public class Board : ScriptableObject
         minRow = 0;
         maxRow = 7;
     }
-    private void AddSquare(GameObject square, int x, int y, int z) {
+    protected void AddSquare(GameObject square, int x, int y, int z) {
         Square squareScript = square.GetComponent<Square>();
         squares[(x, y, z)] = squareScript;
         squareScript.board = this;
@@ -35,6 +35,9 @@ public class Board : ScriptableObject
     public static (int, int, int) GridPos(Vector3 pos) {//TODO: somehow getting y=0 when clicking rank -1 added by mercs
         return ((int)(pos.x + 4), (int)(pos.y + 4), 0);
     }
+    public void CreatePiece(GameObject prefab, (int, int, int) pos) {
+        CreatePiece(prefab, ForceSquare(pos));
+    }
     public void CreatePiece(GameObject prefab, Square square) {
         GameObject piece = Instantiate(prefab, Board.Pos(square.x, square.y), Quaternion.identity);
         piece.layer = id;
@@ -43,6 +46,7 @@ public class Board : ScriptableObject
     }
     public void PlacePiece(Piece piece, Square prevSquare) {
         Square targetSquare = ForceSquare((prevSquare.x, prevSquare.y, prevSquare.z));
+        piece.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, prevPieceRotation));
         targetSquare.Arrive(piece);
     }
     public Square ForceSquare((int, int, int) pos) {
@@ -88,5 +92,15 @@ public class Board : ScriptableObject
             }
         }
         return res;
+    }
+    public void RotatePieces(float rot) {
+        if(rot == prevPieceRotation) 
+            return;
+        prevPieceRotation = rot;
+        Quaternion newRot = Quaternion.Euler(new Vector3(0, 0, rot));
+        foreach(Square square in squares.Values) {
+            if(square.piece != null)
+                square.piece.gameObject.transform.rotation = newRot;
+        }
     }
 }

@@ -60,4 +60,13 @@ public class Piece : MonoBehaviour
         if(x1<x2) return 1;
         return -1;
     }
+    public virtual bool Blocks(Piece piece) {
+        return true;
+    }
+    public virtual bool CanLandMe(Piece piece) {
+        return false;
+    }
+    public virtual bool CanCaptureMe(Piece piece) {
+        return piece.color != color;
+    }
 }

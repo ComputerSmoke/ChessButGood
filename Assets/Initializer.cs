@@ -30,6 +30,7 @@ public class Initializer : MonoBehaviour
     public GameObject gameUI;
     public GameObject chargeSignal;
     public GameObject createPieceSignal;
+    public GameObject coinPiece;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,50 +48,24 @@ public class Initializer : MonoBehaviour
         Game.myColors = new List<int>();
         Game.myColors.Add(0);
         Game.myColors.Add(1);
+        Game.flip = true;
         StartGame();
     }
     private void StartGame() {
         //TODO: reduce starting gold, high for testing
-        Game.whiteGold = 20;
-        Game.blackGold = 20;
+        //Game.whiteGold = 20;
+        //Game.blackGold = 20;
+        Game.initializer = this;
         mainMenu.SetActive(false);
         gameUI.SetActive(true);
-        Game.earth = ScriptableObject.CreateInstance<Board>();
-        Game.earth.Init(LayerMask.NameToLayer("Earth"), whiteSquare, blackSquare);
-        Game.hell = ScriptableObject.CreateInstance<Board>();
-        Game.hell.Init(LayerMask.NameToLayer("Hell"), whiteSquareHell, blackSquareHell);
-        Game.heaven = ScriptableObject.CreateInstance<Board>();
-        Game.heaven.Init(LayerMask.NameToLayer("Heaven"), whiteSquareHeaven, blackSquareHeaven);
-        Game.initializer = this;
-        PlacePieces(Game.earth);
+        Game.earth = ScriptableObject.CreateInstance<Earth>();
+        Game.earth.Init();
+        Game.hell = ScriptableObject.CreateInstance<Hell>();
+        Game.hell.Init();
+        Game.heaven = ScriptableObject.CreateInstance<Heaven>();
+        Game.heaven.Init();
         Game.playing = true;
         layerController.SetLayer("Earth");
-    }
-    public void PlacePieces(Board board) {
-        PlacePiece(whiteRook, 0, 0, board);
-        PlacePiece(whiteKnight, 1, 0, board);
-        PlacePiece(whiteBishop, 2, 0, board);
-        PlacePiece(whiteQueen, 3, 0, board);
-        PlacePiece(whiteKing, 4, 0, board);
-        PlacePiece(whiteBishop, 5, 0, board);
-        PlacePiece(whiteKnight, 6, 0, board);
-        PlacePiece(whiteRook, 7, 0, board);
-        
-        PlacePiece(blackRook, 0, 7, board);
-        PlacePiece(blackKnight, 1, 7, board);
-        PlacePiece(blackBishop, 2, 7, board);
-        PlacePiece(blackQueen, 3, 7, board);
-        PlacePiece(blackKing, 4, 7, board);
-        PlacePiece(blackBishop, 5, 7, board);
-        PlacePiece(blackKnight, 6, 7, board);
-        PlacePiece(blackRook, 7, 7, board);
-        for(int i = 0; i < 8; i++) {
-            PlacePiece(whitePawn, i, 1, board);
-            PlacePiece(blackPawn, i, 6, board);
-        }
-    }
-    private void PlacePiece(GameObject prefab, int col, int row, Board board) {
-        board.CreatePiece(prefab, board.squares[(col, row, 0)]);
     }
 
     // Update is called once per frame

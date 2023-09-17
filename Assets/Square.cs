@@ -51,7 +51,7 @@ public class Square : MonoBehaviour
         return true;
     }
     public bool HasCapture(Piece arrival) {
-        if(piece != null && piece.color != arrival.color) 
+        if(piece != null && piece.CanCaptureMe(arrival)) 
             return true;
         foreach(Trigger trigger in triggers) {
             if(trigger.IsCapture(arrival))

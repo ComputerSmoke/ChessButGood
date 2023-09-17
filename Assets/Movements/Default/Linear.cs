@@ -19,10 +19,13 @@ public class Linear : Movement
         if(distance > 0 && depth == distance) return;
         if(square == null) return;
         if(square.TryAdjacent(direction, out Square nextSquare)) {
-            if(nextSquare.piece == null || nextSquare.piece.color != piece.color)
+            if(Available(piece, nextSquare))
                 res.Add(nextSquare);
-            if(nextSquare.piece == null) 
+            if(nextSquare.piece == null || !nextSquare.piece.Blocks(piece)) 
                 AppendLine(distance, res, nextSquare, direction, depth+1, piece);
         }
+    }
+    static bool Available(Piece piece, Square square) {
+        return square.piece == null || square.piece.CanLandMe(piece) || square.piece.CanCaptureMe(piece);
     }
 }

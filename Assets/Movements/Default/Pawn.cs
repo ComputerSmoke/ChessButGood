@@ -14,13 +14,15 @@ public class Pawn : Movement
     private void AppendForward(List<Square> res, Piece piece) {
         if(piece.square == null)
             return;
-        if(piece.square.TryAdjacent(Movement.IntVec(direction), out Square forward) && forward.piece == null) {
-            res.Add(forward);
-            AppendDouble(res, piece, forward);
+        if(piece.square.TryAdjacent(Movement.IntVec(direction), out Square forward)) {
+            if(forward.piece == null || forward.piece.CanLandMe(piece))
+                res.Add(forward);
+            if(forward.piece == null || !forward.piece.Blocks(piece))
+                AppendDouble(res, piece, forward);
         }
     }
     private void AppendDouble(List<Square> res, Piece piece, Square forward) {
-        if(!piece.moved && forward.TryAdjacent(Movement.IntVec(direction), out Square forward2) && forward2.piece == null) 
+        if(!piece.moved && forward.TryAdjacent(Movement.IntVec(direction), out Square forward2) && (forward2.piece == null || forward2.piece.CanLandMe(piece)))
             res.Add(forward2);
     }
     private void AppendCaptures(List<Square> res, Piece piece) {
@@ -31,9 +33,8 @@ public class Pawn : Movement
     }
     private void AppendCapture(List<Square> res, Piece piece, (int, int, int) dir) {
         if(piece.square.TryAdjacent(dir, out Square target)) {
-            //TODO: add friendly/ally protection
-            if(!target.HasCapture(piece)) return;
-            res.Add(target);
+            if(target.HasCapture(piece)) 
+                res.Add(target);
         }
     }
 }

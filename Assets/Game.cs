@@ -19,6 +19,7 @@ public static class Game
     public static GameObject placing;
     private static GameObject placeGhost;
     private static Board activeBoard;
+    public static bool flip;
 
     public static void Update(Board newActiveBoard)
     {
@@ -26,6 +27,15 @@ public static class Game
         if(!playing)
             return;
         highlightSquares = null;
+        if(flip && turn%2 == 1 && activeBoard != null) {
+            initializer.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            activeBoard.RotatePieces(180);
+        }
+        else {
+            initializer.mainCamera.transform.rotation = Quaternion.identity;
+            activeBoard.RotatePieces(0);
+        }
+        
         MoveGhost();
         ExpandBoard(activeBoard);
         CheckSquareClick(activeBoard);
@@ -46,6 +56,7 @@ public static class Game
             return;
         Vector3 mousePos = Controls.MousePos();
         placeGhost.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+        placeGhost.transform.rotation = initializer.mainCamera.transform.rotation;
     }
     private static void ExpandBoard(Board activeBoard) {
         if(placing != null && activeBoard.AllPlaceOccupied(turn%2)) 
