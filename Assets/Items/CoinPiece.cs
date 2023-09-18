@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class CoinPiece : Item
 {
-    public override void Die(Piece killer) {
-        if(killer.color == 0)
+    protected override void Acquire(Piece piece) {
+        if(piece.color == 0)
             Game.whiteGold++;
-        else if(killer.color == 1)
+        else if(piece.color == 1)
             Game.blackGold++;
-        Object.Destroy(gameObject);
     }
 }

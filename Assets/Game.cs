@@ -105,6 +105,10 @@ public static class Game
     public static Board BoardById(int id) {
         if(id == earth.id) 
             return earth;
+        if(id == hell.id)
+            return hell;
+        if(id == heaven.id)
+            return heaven;
         return null;
     }
     public static void ChoosePlacement(GameObject prefab) {

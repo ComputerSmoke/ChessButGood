@@ -31,6 +31,9 @@ public class Initializer : MonoBehaviour
     public GameObject chargeSignal;
     public GameObject createPieceSignal;
     public GameObject coinPiece;
+    public GameObject hellPortal;
+    public GameObject heavenPortal;
+    public GameObject hornsItem;
     // Start is called before the first frame update
     void Start()
     {

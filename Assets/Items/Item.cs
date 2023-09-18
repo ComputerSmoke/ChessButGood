@@ -13,4 +13,9 @@ public class Item : Piece
     public override bool CanCaptureMe(Piece piece) {
         return false;
     }
+    public override void Die(Piece piece) {
+        Acquire(piece);
+        Object.Destroy(gameObject);
+    }
+    protected virtual void Acquire(Piece piece) {}
 }

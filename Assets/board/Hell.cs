@@ -18,6 +18,12 @@ public class Hell : Board
         CreatePiece(Game.initializer.coinPiece, (1, 5, 0));
         CreatePiece(Game.initializer.coinPiece, (3, 7, 0));
         CreatePiece(Game.initializer.coinPiece, (7, 7, 0));
+
+        CreatePiece(Game.initializer.hellPortal, (2, 2, 0));
+        CreatePiece(Game.initializer.hellPortal, (9, 6, 0));
+        CreatePiece(Game.initializer.hellPortal, (10, 6, 0));
+
+        CreatePiece(Game.initializer.hornsItem, (10, 5, 0));
     }
     protected override void CreateBoard() {
         base.CreateBoard();

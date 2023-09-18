@@ -13,5 +13,7 @@ public class Heaven : Board
     }
     protected override void InitPieces() {
         CreatePiece(Game.initializer.coinPiece, (7, 7, 0));
+        
+        CreatePiece(Game.initializer.heavenPortal, (0, 0, 0));
     }
 }
