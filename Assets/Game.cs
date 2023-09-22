@@ -27,18 +27,22 @@ public static class Game
         if(!playing)
             return;
         highlightSquares = null;
-        if(flip && turn%2 == 1 && activeBoard != null) {
-            initializer.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
-            activeBoard.RotatePieces(180);
-        }
-        else {
-            initializer.mainCamera.transform.rotation = Quaternion.identity;
-            activeBoard.RotatePieces(0);
-        }
-        
+        RotateBoard();
         MoveGhost();
         ExpandBoard(activeBoard);
         CheckSquareClick(activeBoard);
+    }
+    private static void RotateBoard() {
+        if(activeBoard == null) 
+            return;
+        if(flip && turn%2 == 1) {
+            initializer.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+            activeBoard.RotatePieces(180);
+        } 
+        else {
+            initializer.mainCamera.transform.rotation = Quaternion.identity;
+            activeBoard.RotatePieces(0);
+        }        
     }
     private static void CheckSquareClick(Board activeBoard) {
         if(!Controls.KeyDown(Controls.Key.LMB) || activeBoard == null) 
@@ -99,7 +103,7 @@ public static class Game
         else if(selected == null)
             highlightSquares = new HashSet<Square>();
         else
-            highlightSquares = new HashSet<Square>(selected.Movement().ValidSquares());
+            highlightSquares = new HashSet<Square>(selected.TopMovement().ValidSquares());
         return highlightSquares;
     }
     public static Board BoardById(int id) {

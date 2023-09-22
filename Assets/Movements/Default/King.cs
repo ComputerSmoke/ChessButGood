@@ -5,9 +5,9 @@ using UnityEngine;
 public class King : Linear
 {
     public Vector3[] castleDirections;
-    public override List<Square> ValidSquares() {
+    public override HashSet<Square> ValidSquares() {
         Piece piece = this.gameObject.GetComponent<Piece>();
-        List<Square> res = base.ValidSquares();
+        HashSet<Square> res = base.ValidSquares();
         foreach(Vector3 dir in castleDirections) {
             Square target = SearchCastle(Movement.IntVec(dir), piece.square, piece);
             if(target != null)

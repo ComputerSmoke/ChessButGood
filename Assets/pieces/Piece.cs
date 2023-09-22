@@ -43,11 +43,17 @@ public class Piece : MonoBehaviour
         else if(killer.color == 1) 
             Game.blackGold++;
     }
-    public Movement Movement() {
-        return this.gameObject.GetComponent<Movement>();
+    public Movement TopMovement() {
+        Movement[] movements = this.gameObject.GetComponents<Movement>();
+        Movement maxRank = movements[0];
+        foreach(Movement movement in movements) {
+            if(movement.rank > maxRank.rank)
+                maxRank = movement;
+        }
+        return maxRank;
     } 
     public bool CanReach(Square square) {
-        return Movement().ValidSquares().Contains(square);
+        return TopMovement().ValidSquares().Contains(square);
     }
     protected (int,int,int) GetDir(Square square1, Square square2) {
         int dx = GetDirOne(square1.x, square2.x);

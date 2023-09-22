@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NullMovement : Movement
 {
-    public override List<Square> ValidSquares() {
-        return new List<Square>();
+    public override HashSet<Square> ValidSquares() {
+        return new HashSet<Square>();
     }
 }

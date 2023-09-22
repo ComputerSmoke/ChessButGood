@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1213483595775783769}
   - component: {fileID: 882510759603744178}
   - component: {fileID: 775796133182602423}
-  - component: {fileID: 5939546674282843267}
+  - component: {fileID: 6191371539705689900}
   m_Layer: 0
   m_Name: white_knop
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MonoBehaviour:
   blessed: 0
   loot: 1
   xp: 0
---- !u!114 &5939546674282843267
+--- !u!114 &6191371539705689900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,22 +116,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7960397464015381804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da7ac44812dfa646bf830e890d67111, type: 3}
+  m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearDirections:
+  rank: 0
+  directions:
   - {x: 1, y: 1, z: 0}
-  - {x: -1, y: 1, z: 0}
   - {x: 1, y: -1, z: 0}
+  - {x: -1, y: 1, z: 0}
   - {x: -1, y: -1, z: 0}
-  leapDirections:
-  - {x: 2, y: -1, z: 0}
   - {x: 2, y: 1, z: 0}
-  - {x: -2, y: -1, z: 0}
+  - {x: 2, y: -1, z: 0}
   - {x: -2, y: 1, z: 0}
-  - {x: 1, y: -2, z: 0}
+  - {x: -2, y: -1, z: 0}
   - {x: 1, y: 2, z: 0}
-  - {x: -1, y: -2, z: 0}
+  - {x: 1, y: -2, z: 0}
   - {x: -1, y: 2, z: 0}
-  linearDistance: 1
-  leapDistance: 1
+  - {x: -1, y: -2, z: 0}
+  distance: 1

@@ -50,6 +50,9 @@ TagManager:
   - name: Pieces
     uniqueID: 3878962513
     locked: 0
+  - name: Equips
+    uniqueID: 2719370221
+    locked: 0
   - name: PlaceGhosts
     uniqueID: 1743298427
     locked: 0
