@@ -12,4 +12,9 @@ public class AugmentedMovement : Movement
         res.UnionWith(movement2.ValidSquares());
         return res;
     }
+    public override HashSet<Square> RangedSquares() {
+        HashSet<Square> res = movement1.RangedSquares();
+        res.UnionWith(movement2.RangedSquares());
+        return res;
+    }
 }

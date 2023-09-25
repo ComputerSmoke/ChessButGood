@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 677661872101721283}
   - component: {fileID: 2872813623957869803}
   m_Layer: 0
-  m_Name: PistolItem
+  m_Name: ShotgunItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   loot: 0
   xp: 0
   placeOnPiece: 1
-  equippable: {fileID: 4864025342960911226, guid: 6a1c175841dfddc4a953723a436b8fd7, type: 3}
+  equippable: {fileID: 4864025342960911226, guid: 34c219fa5f6a38c4c98993c878465fef, type: 3}
 --- !u!114 &677661872101721283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rank: 0
+  ranged: 0
 --- !u!212 &2872813623957869803
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a3bc0ff6ac5bb4745956d052dd6a3862, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cad3bd2cef44c20469d6fb26e54e56da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

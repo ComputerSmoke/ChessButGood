@@ -12,13 +12,21 @@ public class Square : MonoBehaviour
     public void Arrive(Piece piece) {
         foreach(Trigger trigger in triggers)
             trigger.Arrive(piece);
+        Square piecePrevSquare = piece.square;
+        if(piecePrevSquare != null)
+            piecePrevSquare.Depart(piece);
         Piece prevPiece = this.piece;
         this.piece = piece;
         piece.square = this;
         piece.gameObject.transform.position = Board.Pos(x, y);
         piece.gameObject.layer = board.id;
-        if(prevPiece != null) 
-            prevPiece.Die(piece);
+        if(prevPiece != null && !prevPiece.TryKill(piece)) {
+            Debug.Log("Rolling back failed kill");
+            this.piece = prevPiece;
+            piece.square = piecePrevSquare;
+            if(piecePrevSquare != null)
+                piecePrevSquare.piece = piece;
+        }
     }
     public void Depart(Piece piece) {
         if(piece != this.piece)

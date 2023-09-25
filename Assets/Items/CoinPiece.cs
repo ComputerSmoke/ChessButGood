@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinPiece : Item
 {
-    protected override void Acquire(Piece piece) {
+    public override void Acquire(Piece piece) {
         if(piece.color == 0)
             Game.whiteGold++;
         else if(piece.color == 1)

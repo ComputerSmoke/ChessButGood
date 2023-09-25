@@ -5,10 +5,10 @@ using Multiunity.Unity;
 
 public class CreatePieceSignal : Signal
 {
-    GameObject piece;
+    Piece piece;
     Square square;
     public override void Init(byte[] msg, GameObject prefab) {
-        piece = IdMappings.PrefabById(msg[0]);
+        piece = IdMappings.PrefabById(msg[0]).GetComponent<Piece>();
         Board board = Game.BoardById(msg[1]);
         int x = Grow(msg[2]);
         int y = Grow(msg[3]);
@@ -18,7 +18,7 @@ public class CreatePieceSignal : Signal
     }
     public override byte[] Message() {
         List<byte> res = new List<byte>();
-        res.Add((byte)IdMappings.IdByPrefab(piece));
+        res.Add((byte)IdMappings.IdByPrefab(piece.gameObject));
         res.Add((byte)square.board.id);
         res.Add(Shrink(square.x));
         res.Add(Shrink(square.y));
@@ -27,11 +27,14 @@ public class CreatePieceSignal : Signal
     }
     public void Init(GameObject piece, Square square) {
         this.square = square;
-        this.piece = piece;
+        this.piece = piece.GetComponent<Piece>();
     }
     public override void Execute() {
         Debug.Log("placing. pos: " + square.x + "," + square.y + "," + square.z);
-        square.board.CreatePiece(piece, square);
+        if(square.piece != null && piece is Item) 
+            ((Item)piece).Acquire(square.piece);
+        else
+            square.board.CreatePiece(piece.gameObject, square);
         Game.turn++;
         Forward();
     }

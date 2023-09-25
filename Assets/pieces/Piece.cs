@@ -13,13 +13,29 @@ public class Piece : MonoBehaviour
     public bool blessed;
     public bool loot;
     public int xp;
+    public bool placeOnPiece;
+    public HashSet<Equippable> equips;
+    void Start() {
+        equips = new HashSet<Equippable>();
+    }
     public virtual void Move(Square square) {
-        this.square.Depart(this);
-        square.Arrive(this);
-        this.moved = true;
+        if(!TopMovement().RangedSquares().Contains(square)) {
+            this.square.Depart(this);
+            square.Arrive(this);
+            this.moved = true;
+        } else {
+            square.piece.Die(this);
+        }
         Game.turn++;
     }
+    public virtual bool TryKill(Piece killer) {
+        if(Counter(killer))
+            return false;
+        Die(killer);
+        return true;
+    }
     public virtual void Die(Piece killer) {
+        Debug.Log("Piece " + this + " dying to " + killer);
         square.Depart(this);
         GiveRewards(killer);
         if(killer.eatSouls || square.board != Game.earth)
@@ -28,7 +44,13 @@ public class Piece : MonoBehaviour
             Game.heaven.PlacePiece(this, square);
         else
             Game.hell.PlacePiece(this, square);
-
+    }
+    protected virtual bool Counter(Piece killer) {
+        foreach(Equippable equip in equips) {
+            if(equip.Counter(killer))
+                return true;
+        }
+        return false;
     }
     protected virtual void GiveRewards(Piece killer) {
         killer.xp++;
@@ -74,5 +96,12 @@ public class Piece : MonoBehaviour
     }
     public virtual bool CanCaptureMe(Piece piece) {
         return piece.color != color;
+    }
+    public Movement AugmentMovement(Movement newMove, Movement prevTop) {
+        AugmentedMovement newTop = gameObject.AddComponent<AugmentedMovement>();
+        newTop.movement1 = newMove;
+        newTop.movement2 = prevTop;
+        newTop.rank = prevTop.rank + 1;
+        return newTop;
     }
 }

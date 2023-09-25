@@ -22,7 +22,9 @@ public class Linear : Movement
                 AppendLine(res, nextSquare, direction, depth+1);
         }
     }
-    static bool Available(Piece piece, Square square) {
-        return square.piece == null || square.piece.CanLandMe(piece) || square.piece.CanCaptureMe(piece);
+    private bool Available(Piece piece, Square square) {
+        if(!ranged && (square.piece == null || square.piece.CanLandMe(piece)))
+            return true;
+        return square.piece != null && square.piece.CanCaptureMe(piece);
     }
 }

@@ -69,7 +69,7 @@ public static class Game
 
     private static void ClickSquare(Square square) {
         Debug.Log("clicked square");
-        if(placing != null && square.piece == null && (turn%2 == 0 && square.y < 4 || turn%2 == 1 && square.y > 3))
+        if(placing != null && PlacingHighlight().Contains(square))
             Place(square);
         else if(selected != null && selected.CanReach(square))
             MoveSelected(square);
@@ -98,13 +98,19 @@ public static class Game
     public static HashSet<Square> HighlightSquares() {
         if(highlightSquares != null)
             return highlightSquares;
-        if(placing != null)
-            highlightSquares = activeBoard.OpenSquares(turn%2);
+        if(placing != null) 
+            highlightSquares = PlacingHighlight();
         else if(selected == null)
             highlightSquares = new HashSet<Square>();
         else
             highlightSquares = new HashSet<Square>(selected.TopMovement().ValidSquares());
         return highlightSquares;
+    }
+    private static HashSet<Square> PlacingHighlight() {
+        Piece piece = placing.GetComponent<Piece>();
+        if(!piece.placeOnPiece)
+            return activeBoard.OpenSquares(turn%2);
+        return activeBoard.OpenAndFriendlySquares(turn%2);
     }
     public static Board BoardById(int id) {
         if(id == earth.id) 

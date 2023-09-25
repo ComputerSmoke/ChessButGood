@@ -85,11 +85,18 @@ public abstract class Board : ScriptableObject
             start = 4;
             end = maxRow;
         }
-        for(int x = 0; x < 8; x++) {
-            for(int y = start; y <= end; y++) {
-                if(squares.ContainsKey((x, y, 0)) && squares[(x, y, 0)].piece == null)
-                    res.Add(squares[(x, y, 0)]);
-            }
+        foreach((int, int, int) pos in squares.Keys) {
+            (int x, int y, int z) = pos;
+            if(y >= start && y <= end && squares[(x, y, z)].piece == null)
+                res.Add(squares[(x, y, z)]);
+        }
+        return res;
+    }
+    public HashSet<Square> OpenAndFriendlySquares(int side) {
+        HashSet<Square> res = new HashSet<Square>();
+        foreach(Square square in squares.Values) {
+            if(square.piece == null || square.piece.color == side)
+                res.Add(square);
         }
         return res;
     }

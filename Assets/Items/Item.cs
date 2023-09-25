@@ -17,5 +17,5 @@ public class Item : Piece
         Acquire(piece);
         Object.Destroy(gameObject);
     }
-    protected virtual void Acquire(Piece piece) {}
+    public virtual void Acquire(Piece piece) {}
 }

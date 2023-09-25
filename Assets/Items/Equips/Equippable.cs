@@ -10,20 +10,27 @@ public class Equippable : MonoBehaviour
     //TODO: droppable on ranged attacks (when add ranged attacks)
     public virtual void Equip(Piece piece) {
         holder = piece;
+        piece.equips.Add(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         holderRenderer = holder.GetComponent<SpriteRenderer>();
 
         gameObject.transform.parent = holder.gameObject.transform;
-        gameObject.transform.position = holder.gameObject.transform.position + Offset();
-        gameObject.transform.rotation = holder.gameObject.transform.rotation;
+        float colorAdjust = 1 - holder.color*2;
+        gameObject.transform.position = holder.gameObject.transform.position + (Offset() * colorAdjust);
+        gameObject.transform.rotation = holder.gameObject.transform.rotation * Quaternion.Euler(new Vector3(0, 0, Rotation()));
         gameObject.transform.localScale = Scale();
 
         spriteRenderer.sortingLayerName = "Equips";
+    }
+    public virtual bool Counter(Piece piece) {
+        return false;
     }
     // Update is called once per frame
     void Update()
     {
         gameObject.layer = holder.gameObject.layer;
+        if(!RotateWithParent()) 
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Rotation()*((float)(1 - holder.color*2))));
     }
     protected virtual Vector3 Scale() {
         return new Vector3(1, 1, 1);
@@ -31,4 +38,11 @@ public class Equippable : MonoBehaviour
     protected virtual Vector3 Offset() {
         return new Vector3(0, 0, 0);
     }
+    protected virtual float Rotation() {
+        return 0;
+    }
+    protected virtual bool RotateWithParent() {
+        return true;
+    }
 }
+

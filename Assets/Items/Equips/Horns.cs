@@ -12,6 +12,6 @@ public class Horns : Equippable
         return new Vector3(.5f, .5f, 1);
     }
     protected override Vector3 Offset() {
-        return new Vector3(0, .25f, 1);
+        return new Vector3(0, .25f, 0);
     }
 }
