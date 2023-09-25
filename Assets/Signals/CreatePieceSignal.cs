@@ -35,7 +35,7 @@ public class CreatePieceSignal : Signal
             ((Item)piece).Acquire(square.piece);
         else
             square.board.CreatePiece(piece.gameObject, square);
-        Game.turn++;
+        Game.PassTurn();
         Forward();
     }
 }

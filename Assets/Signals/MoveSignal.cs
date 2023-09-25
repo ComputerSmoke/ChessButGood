@@ -43,6 +43,7 @@ public class MoveSignal : Signal
     public override void Execute() {
         Debug.Log("moving. piece pos: " + square.x + "," + square.y + "," + square.z + " targetPos: " + target.x + "," + target.y + "," + target.z);
         square.piece.Move(target);
+        Game.PassTurn();
         Forward();
     }
 }

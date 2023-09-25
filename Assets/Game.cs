@@ -35,14 +35,10 @@ public static class Game
     private static void RotateBoard() {
         if(activeBoard == null) 
             return;
-        if(flip && turn%2 == 1) {
+        if(flip && turn%2 == 1)
             initializer.mainCamera.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
-            activeBoard.RotatePieces(180);
-        } 
-        else {
-            initializer.mainCamera.transform.rotation = Quaternion.identity;
-            activeBoard.RotatePieces(0);
-        }        
+        else
+            initializer.mainCamera.transform.rotation = Quaternion.identity;     
     }
     private static void CheckSquareClick(Board activeBoard) {
         if(!Controls.KeyDown(Controls.Key.LMB) || activeBoard == null) 
@@ -128,5 +124,11 @@ public static class Game
         SpriteRenderer ghost = placeGhost.AddComponent<SpriteRenderer>();
         ghost.sortingLayerName = "PlaceGhosts";
         ghost.sprite = prefab.GetComponent<SpriteRenderer>().sprite;
+    }
+    public static void PassTurn() {
+        earth.PassTurn();
+        hell.PassTurn();
+        heaven.PassTurn();
+        turn++;
     }
 }

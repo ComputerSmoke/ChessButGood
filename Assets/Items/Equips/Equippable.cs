@@ -10,7 +10,7 @@ public class Equippable : MonoBehaviour
     //TODO: droppable on ranged attacks (when add ranged attacks)
     public virtual void Equip(Piece piece) {
         holder = piece;
-        piece.equips.Add(this);
+        piece.Equips().Add(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         holderRenderer = holder.GetComponent<SpriteRenderer>();
 

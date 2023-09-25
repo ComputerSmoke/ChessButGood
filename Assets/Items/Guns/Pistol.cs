@@ -17,7 +17,7 @@ public class Pistol : Equippable
     public override bool Counter(Piece killer) {
         if(killer.color == holder.color)
             return false;
-        holder.equips.Remove(this);
+        holder.Equips().Remove(this);
         Object.Destroy(this.gameObject);
         killer.Die(holder);
         return true;

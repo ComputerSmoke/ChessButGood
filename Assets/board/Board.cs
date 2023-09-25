@@ -100,14 +100,15 @@ public abstract class Board : ScriptableObject
         }
         return res;
     }
-    public void RotatePieces(float rot) {
-        if(rot == prevPieceRotation) 
-            return;
-        prevPieceRotation = rot;
-        Quaternion newRot = Quaternion.Euler(new Vector3(0, 0, rot));
+    public void PassTurn() {
+        //Move AI pieces
         foreach(Square square in squares.Values) {
-            if(square.piece != null)
-                square.piece.gameObject.transform.rotation = newRot;
+            if(square.piece != null && square.piece.gameObject.TryGetComponent<AI>(out AI ai) && ai.lastMoved < Game.turn) {
+                ai.lastMoved = Game.turn;
+                Square target = ai.GetMove();
+                if(target != square)
+                    square.piece.Move(target);
+            }
         }
     }
 }

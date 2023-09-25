@@ -18,15 +18,14 @@ public class Square : MonoBehaviour
         Piece prevPiece = this.piece;
         this.piece = piece;
         piece.square = this;
-        piece.gameObject.transform.position = Board.Pos(x, y);
-        piece.gameObject.layer = board.id;
         if(prevPiece != null && !prevPiece.TryKill(piece)) {
             Debug.Log("Rolling back failed kill");
             this.piece = prevPiece;
             piece.square = piecePrevSquare;
             if(piecePrevSquare != null)
                 piecePrevSquare.piece = piece;
-        }
+        } else
+            piece.OnArrive(this);
     }
     public void Depart(Piece piece) {
         if(piece != this.piece)

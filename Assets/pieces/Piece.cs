@@ -14,20 +14,22 @@ public class Piece : MonoBehaviour
     public bool loot;
     public int xp;
     public bool placeOnPiece;
-    public HashSet<Equippable> equips;
-    void Start() {
+    private HashSet<Equippable> equips;
+    public HashSet<Equippable> Equips() {
+        if(equips != null)
+            return equips;
         equips = new HashSet<Equippable>();
+        return equips;
     }
     public virtual void Move(Square square) {
         if(!TopMovement().RangedSquares().Contains(square)) {
-            this.square.Depart(this);
             square.Arrive(this);
             this.moved = true;
         } else {
             square.piece.Die(this);
         }
-        Game.turn++;
     }
+    public virtual void OnArrive(Square square) {}
     public virtual bool TryKill(Piece killer) {
         if(Counter(killer))
             return false;
@@ -46,7 +48,7 @@ public class Piece : MonoBehaviour
             Game.hell.PlacePiece(this, square);
     }
     protected virtual bool Counter(Piece killer) {
-        foreach(Equippable equip in equips) {
+        foreach(Equippable equip in Equips()) {
             if(equip.Counter(killer))
                 return true;
         }
@@ -103,5 +105,15 @@ public class Piece : MonoBehaviour
         newTop.movement2 = prevTop;
         newTop.rank = prevTop.rank + 1;
         return newTop;
+    }
+    protected virtual Quaternion Rotation() {
+        return Game.initializer.mainCamera.transform.rotation;
+    }
+    void Update() {
+        gameObject.transform.rotation = Rotation();
+        if(square != null) {
+            gameObject.transform.position = Board.Pos(square.x, square.y);
+            gameObject.layer = square.board.id;
+        }
     }
 }
