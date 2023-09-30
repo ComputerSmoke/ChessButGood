@@ -45,7 +45,12 @@ public abstract class Board : ScriptableObject
         square.Place(piece);
     }
     public void PlacePiece(Piece piece, Square prevSquare) {
-        Square targetSquare = ForceSquare((prevSquare.x, prevSquare.y, prevSquare.z));
+        int ty = prevSquare.y;
+        if(prevSquare.y > 3 && piece.color == 0) 
+            ty = 7 - prevSquare.y;
+        else if(prevSquare.y < 4 && piece.color == 1) 
+            ty = 7 - prevSquare.y;
+        Square targetSquare = ForceSquare((prevSquare.x, ty, prevSquare.z));
         piece.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, prevPieceRotation));
         targetSquare.Arrive(piece);
     }
