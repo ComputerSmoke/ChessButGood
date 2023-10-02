@@ -23,6 +23,9 @@ public class Equippable : MonoBehaviour
         spriteRenderer.sortingLayerName = "Equips";
     }
     public virtual bool Counter(Piece piece) {
+        return CanCounter(piece);
+    }
+    public virtual bool CanCounter(Piece piece) {
         return false;
     }
     // Update is called once per frame

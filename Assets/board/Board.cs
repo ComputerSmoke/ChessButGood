@@ -41,6 +41,8 @@ public abstract class Board : ScriptableObject
     public void CreatePiece(GameObject prefab, Square square) {
         GameObject piece = Instantiate(prefab, Board.Pos(square.x, square.y), Quaternion.identity);
         piece.layer = id;
+        Piece pieceScript = piece.GetComponent<Piece>();
+        pieceScript.Resize(pieceScript.size);
         piece.GetComponent<SpriteRenderer>().sortingLayerName = "Pieces";
         square.Place(piece);
     }
@@ -115,5 +117,13 @@ public abstract class Board : ScriptableObject
                     square.piece.Move(target);
             }
         }
+    }
+    public HashSet<Piece> Pieces() {
+        HashSet<Piece> pieces = new HashSet<Piece>();
+        foreach(Square square in squares.Values) {
+            if(square.piece != null)
+                pieces.Add(square.piece);
+        }
+        return pieces;
     }
 }

@@ -35,6 +35,7 @@ public class Initializer : MonoBehaviour
     public GameObject heavenPortal;
     public GameObject hornsItem;
     public GameObject demon;
+    public GameObject bibAngel;
     // Start is called before the first frame update
     void Start()
     {

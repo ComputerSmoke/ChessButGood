@@ -16,15 +16,27 @@ public class Linear : Movement
         if(distance > 0 && depth == distance) return;
         if(square == null) return;
         if(square.TryAdjacent(direction, out Square nextSquare)) {
-            if(Available(piece, nextSquare))
+            List<Square> block = square.AdjacentBlock(piece.Size());
+            if(Available(piece, block))
                 res.Add(nextSquare);
-            if(nextSquare.piece == null || !nextSquare.piece.Blocks(piece)) 
+            if(!Blocks(piece, block)) 
                 AppendLine(res, nextSquare, direction, depth+1);
         }
     }
-    private bool Available(Piece piece, Square square) {
-        if(!ranged && (square.piece == null || square.piece.CanLandMe(piece)))
-            return true;
-        return square.piece != null && square.piece.CanCaptureMe(piece);
+    private bool Blocks(Piece piece, List<Square> block) {
+        foreach(Square square in block) {
+            if(square.piece != null && square.piece != piece && square.piece.Blocks(piece)) 
+                return true;
+        }
+        return false;
+    }
+    private bool Available(Piece piece, List<Square> block) {
+        foreach(Square square in block) {
+            if(ranged && (square.piece == null || square.piece == piece || !square.piece.CanCaptureMe(piece)))
+                return false;
+            if(!ranged && square.piece != null && square.piece != piece && !square.piece.CanLandMe(piece))
+                return false;
+        }
+        return true;
     }
 }

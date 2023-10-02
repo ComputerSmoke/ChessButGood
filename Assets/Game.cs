@@ -69,8 +69,10 @@ public static class Game
             Place(square);
         else if(selected != null && selected.CanReach(square))
             MoveSelected(square);
-        else if(square.piece != null && square.piece.color == turn%2 && myColors.Contains(square.piece.color) && square.piece != selected)
+        else if(square.piece != null && square.piece.color == turn%2 && myColors.Contains(square.piece.color) && square.piece != selected) {
             selected = square.piece;
+            Debug.Log("Selected: " + square.piece);
+        }
         else if(selected != null && selected.square == square) 
             selected = null;
         else if(selected != null)

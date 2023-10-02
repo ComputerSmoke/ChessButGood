@@ -15,5 +15,7 @@ public class Heaven : Board
         CreatePiece(Game.initializer.coinPiece, (7, 7, 0));
         
         CreatePiece(Game.initializer.heavenPortal, (0, 0, 0));
+        
+        CreatePiece(Game.initializer.bibAngel, (2, 4, 0));
     }
 }

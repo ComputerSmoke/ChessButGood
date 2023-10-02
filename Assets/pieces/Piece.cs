@@ -13,7 +13,10 @@ public class Piece : MonoBehaviour
     public bool blessed;
     public bool loot;
     public int xp;
+    public int kills;
     public bool placeOnPiece;
+    //size offset by 1. That is, size = 0 --> 1x1 square piece
+    public int size;
     private HashSet<Equippable> equips;
     public HashSet<Equippable> Equips() {
         if(equips != null)
@@ -38,7 +41,7 @@ public class Piece : MonoBehaviour
     }
     public virtual void Die(Piece killer) {
         Debug.Log("Piece " + this + " dying to " + killer);
-        square.Depart(this);
+        RemoveSelf();
         GiveRewards(killer);
         if(killer.eatSouls || square.board != Game.earth)
             Object.Destroy(this.gameObject);
@@ -46,6 +49,16 @@ public class Piece : MonoBehaviour
             Game.heaven.PlacePiece(this, square);
         else
             Game.hell.PlacePiece(this, square);
+    }
+    public virtual bool CanKillMe(Piece killer) {
+        return !CanCounter(killer);
+    }
+    protected virtual bool CanCounter(Piece killer) {
+        foreach(Equippable equip in Equips()) {
+            if(equip.CanCounter(killer))
+                return true;
+        }
+        return false;
     }
     protected virtual bool Counter(Piece killer) {
         foreach(Equippable equip in Equips()) {
@@ -55,6 +68,7 @@ public class Piece : MonoBehaviour
         return false;
     }
     protected virtual void GiveRewards(Piece killer) {
+        killer.kills++;
         killer.xp++;
         if(Game.firstBlood) {
             killer.xp++;
@@ -113,7 +127,33 @@ public class Piece : MonoBehaviour
         gameObject.transform.rotation = Rotation();
         if(square != null) {
             gameObject.transform.position = Board.Pos(square.x, square.y);
+            if(size % 2 == 1)
+                gameObject.transform.position += new Vector3(.5f, .5f, 0);
+
             gameObject.layer = square.board.id;
         }
+    }
+    public int Size() {
+        return size+1;
+    }
+    public void Resize(int size) {
+        gameObject.transform.localScale = new Vector3(Size(), Size(), 0);
+        if(square == null) {
+            this.size = size;
+            return;
+        }
+        foreach(Square square in square.AdjacentBlock(Size())) 
+            square.Depart(this);
+        this.size = size;
+        Square temp = square;
+        square = null;
+        temp.Arrive(this);
+    } 
+    public void RemoveSelf() {
+        if(square == null)
+            return;
+        List<Square> block = square.AdjacentBlock(Size());
+        foreach(Square adj in block)
+            adj.Depart(this);
     }
 }

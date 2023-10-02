@@ -15,12 +15,15 @@ public class Pistol : Equippable
         piece.AugmentMovement(pistolMove, top);
     }
     public override bool Counter(Piece killer) {
-        if(killer.color == holder.color)
+        if(!CanCounter(killer))
             return false;
         holder.Equips().Remove(this);
         Object.Destroy(this.gameObject);
         killer.Die(holder);
         return true;
+    }
+    public override bool CanCounter(Piece killer) {
+        return killer.color != holder.color;
     }
     protected override Vector3 Scale() {
         return new Vector3(.5f, .5f, 1);
