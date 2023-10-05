@@ -10,11 +10,15 @@ public class LayerController : MonoBehaviour
     public GameObject mercShopUI;
     public GameObject mageShopUI;
     public GameObject gunShopUI;
+    public GameObject devilChoiceUI;
+    public GameObject atheistChoiceUI;
+    public GameObject gameUI;
+
     public void Init(Camera newCamera) {
         mainCamera = newCamera;
     }
     public void ButtonSetLayer(string layerName) {
-        if(Game.placing == null)
+        if(Game.placing == null && ActiveChoice() == null)
             SetLayer(layerName);
     }
     public void SetLayer(string layerName) {
@@ -23,10 +27,13 @@ public class LayerController : MonoBehaviour
         mainCamera.cullingMask = cullingMask(layer);
     }
     private void EnableUI(int layer) {
+        gameUI.SetActive(ActiveChoice() == null);
         shopsUI.SetActive(layer == LayerMask.NameToLayer("ShopsMenu"));
         mercShopUI.SetActive(layer == LayerMask.NameToLayer("MercShop"));
         mageShopUI.SetActive(layer == LayerMask.NameToLayer("MageShop"));
         gunShopUI.SetActive(layer == LayerMask.NameToLayer("GunShop"));
+        devilChoiceUI.SetActive(layer == LayerMask.NameToLayer("DevilChoice"));
+        //atheistChoiceUI.SetActive(layer == LayerMask.NameToLayer("AtheistChoice"));
     }
     private static int cullingMask(int layer) {
         int mask = 0;
@@ -54,6 +61,13 @@ public class LayerController : MonoBehaviour
             return "MageShop";
         if(layer == LayerMask.NameToLayer("MercShop"))
             return "MercShop";
+        return null;
+    }
+    public string ActiveChoice() {
+        if(layer == LayerMask.NameToLayer("DevilChoice"))
+            return "Devil";
+        if(layer == LayerMask.NameToLayer("AtheistChoice"))
+            return "Atheist";
         return null;
     }
 }

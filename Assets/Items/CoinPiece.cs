@@ -6,8 +6,8 @@ public class CoinPiece : Item
 {
     public override void Acquire(Piece piece) {
         if(piece.color == 0)
-            Game.whiteGold++;
+            Game.whiteGold += 4;
         else if(piece.color == 1)
-            Game.blackGold++;
+            Game.blackGold += 4;
     }
 }

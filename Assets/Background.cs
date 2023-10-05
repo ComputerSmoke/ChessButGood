@@ -46,6 +46,8 @@ public class Background : MonoBehaviour
             return mageShop;
         if(layerController.ActiveShop() == "MercShop")
             return mercShop;
+        if(layerController.ActiveChoice() == "Devil")
+            return hell;
         
         return mainMenu;
     }

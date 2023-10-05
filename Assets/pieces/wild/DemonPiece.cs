@@ -6,7 +6,15 @@ public class DemonPiece : WildPiece
 {
     private int counterTurn;
     private bool dying;
+    public int createTurn;
+    public override void OnCreate() {
+        createTurn = Game.turn;
+    }
     protected override bool Counter(Piece killer) {
+        if(killer.color == 2) {
+            counterTurn = Game.turn;
+            return true;
+        }
         if(square.board != Game.hell || counterTurn > Game.turn)
             return false;
         counterTurn = Game.turn;
@@ -22,7 +30,8 @@ public class DemonPiece : WildPiece
         dying = true;
         RemoveSelf();
         GiveRewards(killer);
-        killer.TryKill(this);
+        if(square.board == Game.hell)
+            killer.TryKill(this);
         Object.Destroy(this.gameObject);
     }
     protected override Quaternion Rotation() {

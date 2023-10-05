@@ -5,9 +5,9 @@ using UnityEngine;
 public static class Game
 {
     public static Initializer initializer;
-    public static Board earth;
-    public static Board heaven;
-    public static Board hell;
+    public static Earth earth;
+    public static Heaven heaven;
+    public static Hell hell;
     private static Piece selected;
     private static HashSet<Square> highlightSquares;
     public static int turn = 0;
@@ -20,6 +20,7 @@ public static class Game
     private static GameObject placeGhost;
     private static Board activeBoard;
     public static bool flip;
+    public static Piece devilLander;
 
     public static void Update(Board newActiveBoard)
     {
@@ -67,16 +68,14 @@ public static class Game
         Debug.Log("clicked square");
         if(placing != null && PlacingHighlight().Contains(square))
             Place(square);
-        else if(selected != null && selected.CanReach(square))
+        else if(selected != null && selected.color == turn % 2 && selected.CanReach(square))
             MoveSelected(square);
-        else if(square.piece != null && square.piece.color == turn%2 && myColors.Contains(square.piece.color) && square.piece != selected) {
+        else if(square.piece != null && square.piece != selected) {
             selected = square.piece;
             Debug.Log("Selected: " + square.piece);
         }
-        else if(selected != null && selected.square == square) 
+        else if(selected != null && selected == square.piece) 
             selected = null;
-        else if(selected != null)
-            MoveSelected(square);
     } 
     private static void Place(Square square) {
         CreatePieceSignal create = UnityEngine.Object.Instantiate(initializer.createPieceSignal).GetComponent<CreatePieceSignal>();
@@ -132,5 +131,9 @@ public static class Game
         hell.PassTurn();
         heaven.PassTurn();
         turn++;
+    }
+    public static void DevilChoice(Piece piece) {
+        devilLander = piece;
+        initializer.layerController.SetLayer("DevilChoice");
     }
 }

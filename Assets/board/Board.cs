@@ -35,16 +35,24 @@ public abstract class Board : ScriptableObject
     public static (int, int, int) GridPos(Vector3 pos) {//TODO: somehow getting y=0 when clicking rank -1 added by mercs
         return ((int)(pos.x + 4), (int)(pos.y + 4), 0);
     }
-    public void CreatePiece(GameObject prefab, (int, int, int) pos) {
-        CreatePiece(prefab, ForceSquare(pos));
+    public GameObject CreatePiece(GameObject prefab, (int, int, int) pos) {
+        return CreatePiece(prefab, ForceSquare(pos));
     }
-    public void CreatePiece(GameObject prefab, Square square) {
+    public GameObject CreatePiece(GameObject prefab, Square square) {
         GameObject piece = Instantiate(prefab, Board.Pos(square.x, square.y), Quaternion.identity);
         piece.layer = id;
         Piece pieceScript = piece.GetComponent<Piece>();
         pieceScript.Resize(pieceScript.size);
         piece.GetComponent<SpriteRenderer>().sortingLayerName = "Pieces";
         square.Place(piece);
+        pieceScript.OnCreate();
+        return piece;
+    }
+    public void PlacePiece(Piece piece, (int, int, int) pos) {
+        (int tx, int ty, int tz) = pos;
+        Square targetSquare = ForceSquare((tx, ty, tz));
+        piece.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, prevPieceRotation));
+        targetSquare.Arrive(piece);
     }
     public void PlacePiece(Piece piece, Square prevSquare) {
         int ty = prevSquare.y;
@@ -52,9 +60,7 @@ public abstract class Board : ScriptableObject
             ty = 7 - prevSquare.y;
         else if(prevSquare.y < 4 && piece.color == 1) 
             ty = 7 - prevSquare.y;
-        Square targetSquare = ForceSquare((prevSquare.x, ty, prevSquare.z));
-        piece.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, prevPieceRotation));
-        targetSquare.Arrive(piece);
+        PlacePiece(piece, (prevSquare.x, ty, prevSquare.z));
     }
     public Square ForceSquare((int, int, int) pos) {
         (int x, int y, int z) = pos;

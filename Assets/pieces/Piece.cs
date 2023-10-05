@@ -29,7 +29,7 @@ public class Piece : MonoBehaviour
             square.Arrive(this);
             this.moved = true;
         } else {
-            square.piece.Die(this);
+            square.piece.TryKill(this);
         }
     }
     public virtual void OnArrive(Square square) {}
@@ -137,7 +137,7 @@ public class Piece : MonoBehaviour
         return size+1;
     }
     public void Resize(int size) {
-        gameObject.transform.localScale = new Vector3(Size(), Size(), 0);
+        gameObject.transform.localScale = new Vector3(size+1, size+1, 0);
         if(square == null) {
             this.size = size;
             return;
@@ -156,4 +156,5 @@ public class Piece : MonoBehaviour
         foreach(Square adj in block)
             adj.Depart(this);
     }
+    public virtual void OnCreate() {}
 }

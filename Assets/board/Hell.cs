@@ -26,6 +26,7 @@ public class Hell : Board
         CreatePiece(Game.initializer.hornsItem, (10, 5, 0));
 
         CreatePiece(Game.initializer.demon, (8, 7, 0));
+        CreatePiece(Game.initializer.devil, (5, 4, 0));
     }
     protected override void CreateBoard() {
         base.CreateBoard();

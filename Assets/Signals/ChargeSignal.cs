@@ -9,15 +9,15 @@ public class ChargeSignal : Signal
     int amount;
     public override void Init(byte[] msg, GameObject prefab) {
         player = (int)msg[0];
-        amount = (int)msg[1];
+        amount = Grow(msg[1]);
     }
     public override byte[] Message() {
         List<byte> res = new List<byte>();
         res.Add((byte)player);
-        res.Add((byte)amount);
+        res.Add(Shrink(amount));
         return res.ToArray();
     }
-    public void Init(int player, int amount) {
+    public void Init(int player, int amount) {//TODO: possible bug missing prefab for multiplayer here
         this.player = player;
         this.amount = amount;
     }
