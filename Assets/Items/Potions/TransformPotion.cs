@@ -8,6 +8,11 @@ public class TransformPotion : Item
         Square square = piece.square;
         piece.RemoveSelf();
         Object.Destroy(piece.gameObject);
-        square.board.CreatePiece(Game.initializer.demon, square);
+        GameObject demonObj = square.board.CreatePiece(Game.initializer.demon, square);
+        demonObj.GetComponent<DemonPiece>().createTurn = Game.turn;
+        if(piece.color == 1)
+            demonObj.GetComponent<DemonAI>().directionOffset = 2;
+        else if(piece.color > 1)
+            demonObj.GetComponent<DemonAI>().directionOffset = 1;
     }
 }

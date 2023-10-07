@@ -170,5 +170,4 @@ public class Piece : MonoBehaviour
             adj.Depart(this);
     }
     public virtual void OnCreate() {}
-    //TODO: change appearance for wrathful and ethereal
 }

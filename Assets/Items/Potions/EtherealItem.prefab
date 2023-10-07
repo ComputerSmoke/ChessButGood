@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4177804467667528884}
   - component: {fileID: 7511178763282086607}
   - component: {fileID: 7624746747737172751}
-  - component: {fileID: -6464296672230726249}
+  - component: {fileID: 9112752645280551823}
   m_Layer: 0
   m_Name: EtherealItem
   m_TagString: Untagged
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   ranged: 0
---- !u!114 &-6464296672230726249
+--- !u!114 &9112752645280551823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,12 +109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8271934721644866782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ff6a89f408578419a734a32fd63d60, type: 3}
+  m_Script: {fileID: 11500000, guid: 4aab9332fad400d4f975b5a43913635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 0}
   moved: 0
-  color: 2
+  color: 3
   eatShadows: 0
   eatSouls: 0
   enableCastle: 0
@@ -126,3 +126,5 @@ MonoBehaviour:
   ethereal: 0
   size: 0
   metaphysical: 0
+  wrathful: 0
+  equippable: {fileID: 4864025342960911226, guid: e1632e560916a0d479998ece6a7e85ab, type: 3}

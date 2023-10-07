@@ -5,8 +5,10 @@ using UnityEngine;
 public class FirePiece : WildPiece
 {
     protected override void DieEffect(Piece killer) {
+        Square mySquare = this.square;
         RemoveSelf();
-        killer.TryKill(this);
+        if(killer.square == mySquare)
+            killer.TryKill(this);
         Object.Destroy(this.gameObject);
     }
 }

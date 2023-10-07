@@ -19,4 +19,34 @@ public abstract class Movement : MonoBehaviour
     public static (int, int, int) IntVec(Vector3 vec) {
         return ((int)vec.x, (int)vec.y, (int)vec.z);
     }
+    protected bool Blocks(List<Square> block) {
+        foreach(Square square in block) {
+            if(square.piece != null && square.piece != piece && square.piece.Blocks(piece)) 
+                return true;
+        }
+        return false;
+    }
+    protected bool Available(List<Square> block) {
+        if(block.Count < piece.Size()*piece.Size())
+            return false;
+        foreach(Square square in block) {
+            if(square.piece != null && square.piece != piece && !square.piece.CanLandMe(piece))
+                return false;
+        }
+        return true;
+    }
+    protected bool Capturable(List<Square> block) {
+        if(block.Count < piece.Size()*piece.Size())
+            return false;
+        bool hasCapture = false;
+        foreach(Square square in block) {
+            if(square.piece == null || square.piece == piece)
+                continue;
+            if(!square.piece.CanLandMe(piece) && !square.piece.CanCaptureMe(piece))
+                return false;
+            if(square.piece.CanCaptureMe(piece))
+                hasCapture = true;
+        }
+        return hasCapture;
+    }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4859083533607734505
+--- !u!1 &4864025342960911226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5909893700801594339}
-  - component: {fileID: 677661872101721283}
-  - component: {fileID: 2872813623957869803}
-  - component: {fileID: 3824287218497030687}
+  - component: {fileID: 6258421672056653560}
+  - component: {fileID: -96787968966025070}
+  - component: {fileID: 7365560989493620913}
   m_Layer: 0
-  m_Name: WrathItem
+  m_Name: WrathEquip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5909893700801594339
+--- !u!4 &6258421672056653560
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859083533607734505}
+  m_GameObject: {fileID: 4864025342960911226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 576.63446, y: 233.02612, z: -2.216328}
@@ -34,27 +33,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &677661872101721283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859083533607734505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fabe9b4588fc5146bb48775305ffae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rank: 0
-  ranged: 0
---- !u!212 &2872813623957869803
+--- !u!212 &-96787968966025070
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859083533607734505}
+  m_GameObject: {fileID: 4864025342960911226}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -94,27 +79,27 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.88, y: 2.93}
+  m_Size: {x: 1, y: 0.7551546}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3824287218497030687
+--- !u!114 &7365560989493620913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859083533607734505}
+  m_GameObject: {fileID: 4864025342960911226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aab9332fad400d4f975b5a43913635b, type: 3}
+  m_Script: {fileID: 11500000, guid: e64ab236ca4a3bd468df0ee45a18fcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 0}
   moved: 0
-  color: 3
+  color: 0
   eatShadows: 0
   eatSouls: 0
   enableCastle: 0
@@ -122,9 +107,8 @@ MonoBehaviour:
   loot: 0
   xp: 0
   kills: 0
-  placeOnPiece: 1
+  placeOnPiece: 0
   ethereal: 0
   size: 0
   metaphysical: 0
   wrathful: 0
-  equippable: {fileID: 4864025342960911226, guid: 8a9426cae88236c4085e0906a488c266, type: 3}

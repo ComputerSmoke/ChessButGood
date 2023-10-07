@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Pawn : Movement
 {
-    //TODO: work with larger pawns
     public Vector3 direction;
     public override HashSet<Square> ValidSquares() {
         HashSet<Square> res = new HashSet<Square>();
@@ -16,15 +15,19 @@ public class Pawn : Movement
         if(piece.square == null)
             return;
         if(piece.square.TryAdjacent(Movement.IntVec(direction), out Square forward)) {
-            if(forward.piece == null || forward.piece.CanLandMe(piece))
+            List<Square> block = forward.AdjacentBlock(piece.Size());
+            if(Available(block))
                 res.Add(forward);
-            if(forward.piece == null || !forward.piece.Blocks(piece))
+            if(!Blocks(block))
                 AppendDouble(res, forward);
         }
     }
     private void AppendDouble(HashSet<Square> res, Square forward) {
-        if(!piece.moved && forward.TryAdjacent(Movement.IntVec(direction), out Square forward2) && (forward2.piece == null || forward2.piece.CanLandMe(piece)))
-            res.Add(forward2);
+        if(!piece.moved && forward.TryAdjacent(Movement.IntVec(direction), out Square forward2)) {
+            List<Square> block = forward.AdjacentBlock(piece.Size());
+            if(Available(block))
+                res.Add(forward2);
+        }
     }
     private void AppendCaptures(HashSet<Square> res) {
         (int dx, int dy, int dz) = Movement.IntVec(direction);
@@ -33,7 +36,8 @@ public class Pawn : Movement
     }
     private void AppendCapture(HashSet<Square> res, (int, int, int) dir) {
         if(piece.square.TryAdjacent(dir, out Square target)) {
-            if(target.HasCapture(piece)) 
+            List<Square> block = target.AdjacentBlock(piece.Size());
+            if(Capturable(block)) 
                 res.Add(target);
         }
     }

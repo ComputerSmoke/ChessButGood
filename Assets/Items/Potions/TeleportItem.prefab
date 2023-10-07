@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5909893700801594339}
   - component: {fileID: 677661872101721283}
   - component: {fileID: 2872813623957869803}
-  - component: {fileID: 7707183084854761125}
+  - component: {fileID: 2779932113692146389}
   m_Layer: 0
   m_Name: TeleportItem
   m_TagString: Untagged
@@ -100,7 +100,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7707183084854761125
+--- !u!114 &2779932113692146389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,12 +109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4859083533607734505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 068fe9b4ec9a9dd4fa91c62d7916d875, type: 3}
+  m_Script: {fileID: 11500000, guid: 4aab9332fad400d4f975b5a43913635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 0}
   moved: 0
-  color: 2
+  color: 3
   eatShadows: 0
   eatSouls: 0
   enableCastle: 0
@@ -127,3 +127,4 @@ MonoBehaviour:
   size: 0
   metaphysical: 0
   wrathful: 0
+  equippable: {fileID: 4864025342960911226, guid: 886f669513807bc448da2061cb3ee3e3, type: 3}
