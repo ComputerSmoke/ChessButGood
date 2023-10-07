@@ -43,6 +43,9 @@ public class Initializer : MonoBehaviour
     public GameObject fire;
     public GameObject devil;
     public GameObject atheistPiece;
+    public GameObject xpIndicator;
+    public GameObject levelupCanvas;
+    public GameObject levelupButton;
     // Start is called before the first frame update
     void Start()
     {

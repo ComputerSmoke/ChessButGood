@@ -21,6 +21,7 @@ public class Piece : MonoBehaviour
     public bool metaphysical;
     public bool wrathful;
     private bool dying;
+    private LevelMenu menu;
     private HashSet<Equippable> equips;
     public HashSet<Equippable> Equips() {
         if(equips != null)
@@ -170,4 +171,13 @@ public class Piece : MonoBehaviour
             adj.Depart(this);
     }
     public virtual void OnCreate() {}
+    private LevelMenu Menu() {
+        if(menu == null && gameObject.TryGetComponent(out LevelMenu levelMenu))
+            menu = levelMenu;
+        return menu;
+    }
+    public void ToggleMenu() {
+        if(Menu() != null)
+            Menu().Toggle();
+    }
 }

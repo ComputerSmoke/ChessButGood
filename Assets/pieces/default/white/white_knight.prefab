@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7512127563941535723}
   - component: {fileID: 8958271271488072339}
   - component: {fileID: 655114023839451842}
+  - component: {fileID: 1695037609988964062}
   m_Layer: 0
   m_Name: white_knight
   m_TagString: Untagged
@@ -107,6 +108,12 @@ MonoBehaviour:
   blessed: 1
   loot: 1
   xp: 0
+  kills: 0
+  placeOnPiece: 0
+  ethereal: 0
+  size: 0
+  metaphysical: 0
+  wrathful: 0
 --- !u!114 &655114023839451842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rank: 0
+  ranged: 0
   directions:
   - {x: 1, y: 2, z: 0}
   - {x: 1, y: -2, z: 0}
@@ -129,3 +138,19 @@ MonoBehaviour:
   - {x: -2, y: 1, z: 0}
   - {x: -2, y: -1, z: 0}
   distance: 1
+--- !u!114 &1695037609988964062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465965256985278725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960a415b6efb6ab49825fd9561868221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - {fileID: 7960397464015381804, guid: 37d6e889e069caf429c99156a0a5ec36, type: 3}
+  - {fileID: 7960397464015381804, guid: 88295d32afe61ae48ae713f66b4a0487, type: 3}
+  - {fileID: 7960397464015381804, guid: 930e22bda0ea84b49916a93269361b4c, type: 3}

@@ -57,6 +57,8 @@ public abstract class Board : MonoBehaviour
         piece.GetComponent<SpriteRenderer>().sortingLayerName = "Pieces";
         square.Place(piece);
         pieceScript.OnCreate();
+        GameObject xpIndicator = Instantiate(Game.initializer.xpIndicator, piece.transform);
+        xpIndicator.transform.position = xpIndicator.transform.position + new Vector3(-0.25f, .25f, 0);
         return piece;
     }
     public void PlacePiece(Piece piece, (int, int, int) pos) {

@@ -42,14 +42,17 @@ public static class Game
             initializer.mainCamera.transform.rotation = Quaternion.identity;     
     }
     private static void CheckSquareClick(Board activeBoard) {
-        if(!Controls.KeyDown(Controls.Key.LMB) || activeBoard == null) 
+        if(!Controls.KeyDown(Controls.Key.LMB) && !Controls.KeyDown(Controls.Key.RMB) || activeBoard == null) 
             return;
         Vector3 mousePos = Controls.MousePos();
         (int, int, int) gridPos = Board.GridPos(mousePos);
         Debug.Log("mouse click at: " + gridPos);
         if(activeBoard.squares.ContainsKey(gridPos)) {
             Square square = activeBoard.squares[gridPos];
-            ClickSquare(square);
+            if(Controls.KeyDown(Controls.Key.LMB))
+                LeftClickSquare(square);
+            if(Controls.KeyDown(Controls.Key.RMB))
+                RightClickSquare(square);
         }
     }
     private static void MoveGhost() {
@@ -64,7 +67,7 @@ public static class Game
             activeBoard.ExpandBackrow(turn%2);
     }
 
-    private static void ClickSquare(Square square) {
+    private static void LeftClickSquare(Square square) {
         Debug.Log("clicked square");
         if(placing != null && PlacingHighlight().Contains(square))
             Place(square);
@@ -77,6 +80,11 @@ public static class Game
         else if(selected != null && selected == square.piece) 
             selected = null;
     } 
+    private static void RightClickSquare(Square square) {
+        Debug.Log("Right clicked square");
+        if(square.piece != null)
+            square.piece.ToggleMenu();
+    }
     private static void Place(Square square) {
         CreatePieceSignal create = UnityEngine.Object.Instantiate(initializer.createPieceSignal).GetComponent<CreatePieceSignal>();
         create.Init(placing, square);
