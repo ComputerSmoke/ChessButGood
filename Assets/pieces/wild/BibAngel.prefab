@@ -149,4 +149,5 @@ MonoBehaviour:
   kills: 0
   placeOnPiece: 0
   size: 1
+  metaphysical: 1
   ai: {fileID: -7742222693431299862}

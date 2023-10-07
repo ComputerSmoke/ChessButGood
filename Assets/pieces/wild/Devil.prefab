@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastMoved: 0
   directionOffset: 0
+  startTurn: 0
   clone: {fileID: 0}
 --- !u!114 &-6370733784857653390
 MonoBehaviour:
@@ -146,4 +147,5 @@ MonoBehaviour:
   kills: 0
   placeOnPiece: 0
   size: 0
+  metaphysical: 1
   ai: {fileID: 0}

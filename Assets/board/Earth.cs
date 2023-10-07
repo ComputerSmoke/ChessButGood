@@ -37,4 +37,14 @@ public class Earth : Board
         CreatePiece(Game.initializer.coinPiece, (0, 4, 0));
         CreatePiece(Game.initializer.coinPiece, (7, 3, 0));
     }
+    public void MetaPurge() {
+        foreach(Square square in squares.Values) {
+            if(square.piece != null && square.piece.metaphysical) {
+                Piece piece = square.piece;
+                piece.RemoveSelf();
+                Object.Destroy(piece.gameObject);
+            }
+
+        }
+    }
 }

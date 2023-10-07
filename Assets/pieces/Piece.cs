@@ -17,6 +17,7 @@ public class Piece : MonoBehaviour
     public bool placeOnPiece;
     //size offset by 1. That is, size = 0 --> 1x1 square piece
     public int size;
+    public bool metaphysical;
     private HashSet<Equippable> equips;
     public HashSet<Equippable> Equips() {
         if(equips != null)

@@ -17,5 +17,7 @@ public class Heaven : Board
         CreatePiece(Game.initializer.heavenPortal, (0, 0, 0));
         
         CreatePiece(Game.initializer.bibAngel, (2, 4, 0));
+
+        CreatePiece(Game.initializer.atheistPiece, (5, 4, 0));
     }
 }

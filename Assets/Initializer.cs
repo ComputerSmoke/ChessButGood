@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
+    public GameObject earthPrefab;
+    public GameObject heavenPrefab;
+    public GameObject hellPrefab;
     public GameObject whiteKing;
     public GameObject whiteQueen;
     public GameObject whitePawn;
@@ -39,6 +42,7 @@ public class Initializer : MonoBehaviour
     public GameObject releaseDevilSignal;
     public GameObject fire;
     public GameObject devil;
+    public GameObject atheistPiece;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,11 +72,11 @@ public class Initializer : MonoBehaviour
         Game.initializer = this;
         mainMenu.SetActive(false);
         gameUI.SetActive(true);
-        Game.earth = ScriptableObject.CreateInstance<Earth>();
+        Game.earth = Instantiate(earthPrefab).GetComponent<Earth>();
         Game.earth.Init();
-        Game.hell = ScriptableObject.CreateInstance<Hell>();
+        Game.hell = Instantiate(hellPrefab).GetComponent<Hell>();
         Game.hell.Init();
-        Game.heaven = ScriptableObject.CreateInstance<Heaven>();
+        Game.heaven = Instantiate(heavenPrefab).GetComponent<Heaven>();
         Game.heaven.Init();
         Game.playing = true;
         layerController.SetLayer("Earth");

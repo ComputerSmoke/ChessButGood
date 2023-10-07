@@ -12,6 +12,7 @@ public class Background : MonoBehaviour
     public GameObject mercShop;
     public GameObject shopsMenu;
     public GameObject mainMenu;
+    public GameObject reddit;
     private GameObject activeBackground;
     public LayerController layerController;
     public Camera mainCamera;
@@ -34,10 +35,16 @@ public class Background : MonoBehaviour
             return mainMenu;
         if(layerController.ActiveBoard() == Game.earth)
             return earth;
-        if(layerController.ActiveBoard() == Game.hell)
+        if(layerController.ActiveBoard() == Game.hell) {
+            if(Game.hell.destroyed)
+                return reddit;
             return hell;
-        if(layerController.ActiveBoard() == Game.heaven) 
+        }
+        if(layerController.ActiveBoard() == Game.heaven) {
+            if(Game.heaven.destroyed)
+                return reddit;
             return heaven;
+        }
         if(layerController.ActiveShop() == "ShopsMenu")
             return shopsMenu;
         if(layerController.ActiveShop() == "GunShop")
@@ -48,6 +55,8 @@ public class Background : MonoBehaviour
             return mercShop;
         if(layerController.ActiveChoice() == "Devil")
             return hell;
+        if(layerController.ActiveChoice() == "Atheist")
+            return reddit;
         
         return mainMenu;
     }

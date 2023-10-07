@@ -127,9 +127,9 @@ public static class Game
         ghost.sprite = prefab.GetComponent<SpriteRenderer>().sprite;
     }
     public static void PassTurn() {
-        earth.PassTurn();
-        hell.PassTurn();
-        heaven.PassTurn();
+        earth.PassTurn(earth == activeBoard);
+        hell.PassTurn(hell == activeBoard);
+        heaven.PassTurn(heaven == activeBoard);
         turn++;
     }
     public static void DevilChoice(Piece piece) {

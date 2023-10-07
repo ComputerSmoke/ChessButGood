@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Board : ScriptableObject
+public abstract class Board : MonoBehaviour
 {
     public Dictionary<(int, int, int), Square> squares;
     public int id;
@@ -11,6 +11,16 @@ public abstract class Board : ScriptableObject
     protected int minRow;
     protected int maxRow;
     protected float prevPieceRotation;
+    public bool destroyed;
+    public void Destroy() {
+        foreach(Square square in squares.Values) {
+            if(square.piece != null)
+                Object.Destroy(square.piece.gameObject);
+            Object.Destroy(square.gameObject);
+        }
+        squares.Clear();
+        destroyed = true;
+    }
     public abstract void Init();
     protected abstract void InitPieces();
     protected virtual void CreateBoard() {
@@ -39,6 +49,7 @@ public abstract class Board : ScriptableObject
         return CreatePiece(prefab, ForceSquare(pos));
     }
     public GameObject CreatePiece(GameObject prefab, Square square) {
+        if(destroyed) return null;
         GameObject piece = Instantiate(prefab, Board.Pos(square.x, square.y), Quaternion.identity);
         piece.layer = id;
         Piece pieceScript = piece.GetComponent<Piece>();
@@ -49,6 +60,11 @@ public abstract class Board : ScriptableObject
         return piece;
     }
     public void PlacePiece(Piece piece, (int, int, int) pos) {
+        if(destroyed) {
+            piece.RemoveSelf();
+            Object.Destroy(piece.gameObject);
+            return;
+        }
         (int tx, int ty, int tz) = pos;
         Square targetSquare = ForceSquare((tx, ty, tz));
         piece.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, prevPieceRotation));
@@ -63,6 +79,7 @@ public abstract class Board : ScriptableObject
         PlacePiece(piece, (prevSquare.x, ty, prevSquare.z));
     }
     public Square ForceSquare((int, int, int) pos) {
+        if(destroyed) return null;
         (int x, int y, int z) = pos;
         if(squares.ContainsKey(pos))
             return squares[(x, y, z)];
@@ -113,14 +130,16 @@ public abstract class Board : ScriptableObject
         }
         return res;
     }
-    public void PassTurn() {
+    public void PassTurn(bool moveDelay) {
+        if(destroyed) return;
+        float delayMult = moveDelay ? .5f : 0f;
+        int i = 1;
         //Move AI pieces
         foreach(Square square in squares.Values) {
             if(square.piece != null && square.piece.gameObject.TryGetComponent<AI>(out AI ai) && ai.lastMoved < Game.turn) {
                 ai.lastMoved = Game.turn;
-                Square target = ai.GetMove();
-                if(target != square)
-                    square.piece.Move(target);
+                StartCoroutine(DelayedMove(((float)i)*delayMult, square.piece, ai));
+                i++;
             }
         }
     }
@@ -131,5 +150,11 @@ public abstract class Board : ScriptableObject
                 pieces.Add(square.piece);
         }
         return pieces;
+    }
+    private IEnumerator DelayedMove(float time, Piece piece, AI ai) {
+        yield return new WaitForSeconds(time);
+        Square target = ai.GetMove();
+        if(target != piece.square)
+            piece.Move(target);
     }
 }

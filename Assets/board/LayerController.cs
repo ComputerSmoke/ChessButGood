@@ -33,7 +33,7 @@ public class LayerController : MonoBehaviour
         mageShopUI.SetActive(layer == LayerMask.NameToLayer("MageShop"));
         gunShopUI.SetActive(layer == LayerMask.NameToLayer("GunShop"));
         devilChoiceUI.SetActive(layer == LayerMask.NameToLayer("DevilChoice"));
-        //atheistChoiceUI.SetActive(layer == LayerMask.NameToLayer("AtheistChoice"));
+        atheistChoiceUI.SetActive(layer == LayerMask.NameToLayer("AtheistChoice"));
     }
     private static int cullingMask(int layer) {
         int mask = 0;

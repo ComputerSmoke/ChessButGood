@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8535003071292266705}
   - component: {fileID: 4428615514553450572}
-  - component: {fileID: 1324130319181625645}
-  - component: {fileID: -8721642588233580437}
-  - component: {fileID: 5492321991130175390}
+  - component: {fileID: -8205105012119709908}
+  - component: {fileID: 2400321378198320960}
   m_Layer: 0
-  m_Name: demon_down
+  m_Name: AtheismGod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -416004783
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ad00ef6d025654c4fb8c55a3f80578ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a708368716eae40489cc14eab01fc951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1324130319181625645
+--- !u!114 &-8205105012119709908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,45 +95,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4628042503045162094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rank: 0
-  ranged: 0
-  directions:
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: -1, z: 0}
-  distance: 0
---- !u!114 &-8721642588233580437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4628042503045162094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2425b8a3162ab5b468483a17b64c970d, type: 3}
+  m_Script: {fileID: 11500000, guid: b302ff2e946318746bb940970dd3a416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 0}
   moved: 0
   color: 2
   eatShadows: 0
-  eatSouls: 1
+  eatSouls: 0
   enableCastle: 0
   blessed: 0
   loot: 0
   xp: 0
   kills: 0
   placeOnPiece: 0
-  size: 0
+  size: 1
   metaphysical: 1
   ai: {fileID: 0}
-  createTurn: 0
---- !u!114 &5492321991130175390
+--- !u!114 &2400321378198320960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,8 +121,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4628042503045162094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0236d8d6567305d489c214da2c1870a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fabe9b4588fc5146bb48775305ffae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastMoved: 0
-  directionOffset: 2
+  rank: 0
+  ranged: 0
