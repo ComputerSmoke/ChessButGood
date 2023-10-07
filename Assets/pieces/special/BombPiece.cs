@@ -5,12 +5,8 @@ using UnityEngine;
 public class BombPiece : Piece
 {
     public int explosionRadius;
-    private bool exploding;
-    public override void Die(Piece killer) {
-        if(exploding)
-            return;
-        Debug.Log("exploding");
-        exploding = true;
+    //TODO: blow up all squares within radius of boarder
+    protected override void DieEffect(Piece killer) {
         for(int i = -explosionRadius; i <= explosionRadius; i++) {
             for(int j = -explosionRadius; j <= explosionRadius; j++) {
                 for(int k = -explosionRadius; k <= explosionRadius; k++) {
@@ -22,6 +18,8 @@ public class BombPiece : Piece
         Debug.Log("explosion base:");
         GiveRewards(killer);
         square.Depart(this);
+        if(wrathful)
+            killer.TryKill(this);
         if(blessed && square.board.id == Game.earth.id) {
             Game.heaven.PlacePiece(this, square);
         } else

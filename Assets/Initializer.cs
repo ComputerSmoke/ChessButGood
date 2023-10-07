@@ -46,8 +46,8 @@ public class Initializer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Game.whiteGold = 5;
-        Game.blackGold = 5;
+        Game.whiteGold = 50;
+        Game.blackGold = 50;
         gameUI.SetActive(false);
         layerController = layerControllerObject.GetComponent<LayerController>();
         layerController.Init(mainCamera);

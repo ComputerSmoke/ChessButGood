@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pawn : Movement
 {
+    //TODO: work with larger pawns
     public Vector3 direction;
     public override HashSet<Square> ValidSquares() {
         HashSet<Square> res = new HashSet<Square>();

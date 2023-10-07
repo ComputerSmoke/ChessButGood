@@ -13,7 +13,7 @@ public class Item : Piece
     public override bool CanCaptureMe(Piece piece) {
         return false;
     }
-    public override void Die(Piece piece) {
+    protected override void DieEffect(Piece piece) {
         Acquire(piece);
         Object.Destroy(gameObject);
     }

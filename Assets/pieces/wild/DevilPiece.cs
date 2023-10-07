@@ -5,7 +5,6 @@ using UnityEngine;
 public class DevilPiece : WildPiece
 {
     private int counterTurn;
-    private bool dying;
     //TODO: implement multiple hp with counter function?
     protected override bool Counter(Piece killer) {
         if(killer.color == 2)
@@ -17,10 +16,7 @@ public class DevilPiece : WildPiece
         if(square.board == Game.heaven)
             Game.hell.PlacePiece(this, square);
     }
-    public override void Die(Piece killer) {
-        if(dying)
-            return;
-        dying = true;
+    protected override void DieEffect(Piece killer) {
         if(square.board != Game.hell) {
             RemoveSelf();
             GiveRewards(killer);

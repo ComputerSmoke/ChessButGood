@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class King : Linear
 {
+    //TODO: work with larger kings
     public Vector3[] castleDirections;
     public override HashSet<Square> ValidSquares() {
         Piece piece = this.gameObject.GetComponent<Piece>();

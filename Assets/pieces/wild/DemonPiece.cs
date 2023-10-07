@@ -5,7 +5,6 @@ using UnityEngine;
 public class DemonPiece : WildPiece
 {
     private int counterTurn;
-    private bool dying;
     public int createTurn;
     public override void OnCreate() {
         createTurn = Game.turn;
@@ -24,10 +23,7 @@ public class DemonPiece : WildPiece
         if(square.board == Game.heaven)
             Game.hell.PlacePiece(this, square);
     }
-    public override void Die(Piece killer) {
-        if(dying)
-            return;
-        dying = true;
+    protected override void DieEffect(Piece killer) {
         RemoveSelf();
         GiveRewards(killer);
         if(square.board == Game.hell)

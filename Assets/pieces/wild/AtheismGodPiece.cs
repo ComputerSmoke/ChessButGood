@@ -5,11 +5,7 @@ using UnityEngine;
 public class AtheismGodPiece : WildPiece
 {
     private int counterTurn;
-    private bool dying;
-    public override void Die(Piece killer) {
-        if(dying)
-            return;
-        dying = true;
+    protected override void DieEffect(Piece killer) {
         Game.initializer.layerController.SetLayer("AtheistChoice");
         RemoveSelf();
         Object.Destroy(this.gameObject);

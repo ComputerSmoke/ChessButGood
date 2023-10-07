@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PawnPiece : Piece
 {
+    //TODO: work with larger pawns
     public override void Move(Square square) {
         List<Square> squaresBetween = SquaresBetween(this.square, square);
         foreach(Square intermittent in squaresBetween) {

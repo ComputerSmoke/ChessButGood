@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class FirePiece : WildPiece
 {
-    private bool dying;
-    public override void Die(Piece killer) {
-        if(dying)
-            return;
-        dying = true;
+    protected override void DieEffect(Piece killer) {
         RemoveSelf();
         killer.TryKill(this);
         Object.Destroy(this.gameObject);

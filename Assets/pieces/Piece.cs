@@ -15,9 +15,12 @@ public class Piece : MonoBehaviour
     public int xp;
     public int kills;
     public bool placeOnPiece;
+    public bool ethereal;
     //size offset by 1. That is, size = 0 --> 1x1 square piece
     public int size;
     public bool metaphysical;
+    public bool wrathful;
+    private bool dying;
     private HashSet<Equippable> equips;
     public HashSet<Equippable> Equips() {
         if(equips != null)
@@ -40,10 +43,19 @@ public class Piece : MonoBehaviour
         Die(killer);
         return true;
     }
-    public virtual void Die(Piece killer) {
+    public void Die(Piece killer) {
+        if(dying)
+            return;
+        dying = true;
         Debug.Log("Piece " + this + " dying to " + killer);
+        DieEffect(killer);
+        dying = false;
+    }
+    protected virtual void DieEffect(Piece killer) {
         RemoveSelf();
         GiveRewards(killer);
+        if(wrathful)
+            killer.TryKill(this);
         if(killer.eatSouls || square.board != Game.earth)
             Object.Destroy(this.gameObject);
         else if(blessed)
@@ -106,7 +118,7 @@ public class Piece : MonoBehaviour
         return -1;
     }
     public virtual bool Blocks(Piece piece) {
-        return true;
+        return !ethereal;
     }
     public virtual bool CanLandMe(Piece piece) {
         return false;
@@ -158,4 +170,5 @@ public class Piece : MonoBehaviour
             adj.Depart(this);
     }
     public virtual void OnCreate() {}
+    //TODO: change appearance for wrathful and ethereal
 }
