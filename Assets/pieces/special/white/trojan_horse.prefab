@@ -129,7 +129,7 @@ MonoBehaviour:
   eatSouls: 0
   enableCastle: 0
   blessed: 0
-  loot: 0
+  loot: 1
   xp: 0
   kills: 0
   placeOnPiece: 0
@@ -138,3 +138,5 @@ MonoBehaviour:
   metaphysical: 0
   wrathful: 0
   spawn: {fileID: 1762314491132818387, guid: 0ad7a08019d067f48ae8b28e813b703d, type: 3}
+  spawnDirs:
+  - {x: 0, y: 0, z: 0}

@@ -33,8 +33,10 @@ public class Square : MonoBehaviour
             }
             square.piece = arrival;
         }
-        foreach(Piece dyer in dying) 
+        foreach(Piece dyer in dying) {
             dyer.Die(arrival);
+            arrival.CapturedOther(dyer);
+        }
         foreach(Square square in block)
             arrival.OnArrive(square);
     }
@@ -95,7 +97,6 @@ public class Square : MonoBehaviour
     }
     public List<Square> AdjacentBlock(int size) {
         List<Square> res = new();
-        int centerPos = (size-1)/2;
         for(int i = -(size-1)/2; i <= size/2; i++) {
             for(int j = -(size-1)/2; j <= size/2; j++) {
                 if(TryAdjacent((i, j, 0), out Square square))

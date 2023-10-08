@@ -49,4 +49,10 @@ public abstract class Movement : MonoBehaviour
         }
         return hasCapture;
     }
+    protected bool Capturable(Square square) {
+        return square.piece != null && square.piece != piece && square.piece.CanCaptureMe(piece);
+    }
+    protected bool Blocks(Square square) {
+        return square.piece != null && square.piece != piece && square.piece.Blocks(piece);
+    }
 }

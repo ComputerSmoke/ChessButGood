@@ -8,7 +8,7 @@ public class UpgradeButton : MonoBehaviour
     public Piece piece;
     public GameObject upgrade;
     public void Buy() {
-        if(piece.xp < 2)
+        if(piece.xp < 2 || Game.turn%2 != piece.color)
             return;
         Square square = piece.square;
         piece.RemoveSelf();

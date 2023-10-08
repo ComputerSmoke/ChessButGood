@@ -26,9 +26,9 @@ public class Background : MonoBehaviour
         if(activeBackground != null)
             activeBackground.SetActive(false);
         background.SetActive(true);
-        background.transform.position = new Vector3(mainCamera.gameObject.transform.position.x, mainCamera.gameObject.transform.position.y, 0);
-        background.transform.localScale = new Vector3(200, 200, 1);
         activeBackground = background;
+        background.transform.localScale = new Vector3(40f*mainCamera.orthographicSize, 40f*mainCamera.orthographicSize, 1);
+        background.transform.position = new Vector3(mainCamera.gameObject.transform.position.x, mainCamera.gameObject.transform.position.y, background.transform.position.z);
     }
     private GameObject NextBackground() {
         if(Game.earth == null)

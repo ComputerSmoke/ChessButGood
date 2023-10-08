@@ -171,6 +171,7 @@ public class Piece : MonoBehaviour
             adj.Depart(this);
     }
     public virtual void OnCreate() {}
+    public virtual void CapturedOther(Piece capturedPiece) {}
     private LevelMenu Menu() {
         if(menu == null && gameObject.TryGetComponent(out LevelMenu levelMenu))
             menu = levelMenu;

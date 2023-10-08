@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 882510759603744178}
   - component: {fileID: 775796133182602423}
   - component: {fileID: 5776237472607243299}
+  - component: {fileID: -1715030739458029985}
   m_Layer: 0
   m_Name: black_knook
   m_TagString: Untagged
@@ -107,6 +108,12 @@ MonoBehaviour:
   blessed: 0
   loot: 1
   xp: 0
+  kills: 0
+  placeOnPiece: 0
+  ethereal: 0
+  size: 0
+  metaphysical: 0
+  wrathful: 0
 --- !u!114 &5776237472607243299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rank: 0
+  ranged: 0
   directions:
   - {x: 1, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
@@ -134,3 +142,17 @@ MonoBehaviour:
   - {x: -1, y: 2, z: 0}
   - {x: -1, y: -2, z: 0}
   distance: 1
+--- !u!114 &-1715030739458029985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960397464015381804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960a415b6efb6ab49825fd9561868221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - {fileID: 7960397464015381804, guid: 6523dece77179cc4f873fbd28da4b904, type: 3}

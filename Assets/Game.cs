@@ -18,7 +18,7 @@ public static class Game
     public static bool firstBlood;
     public static GameObject placing;
     private static GameObject placeGhost;
-    private static Board activeBoard;
+    public static Board activeBoard;
     public static bool flip;
     public static Piece devilLander;
 

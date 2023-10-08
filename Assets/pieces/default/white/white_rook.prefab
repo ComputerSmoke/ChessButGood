@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4428615514553450572}
   - component: {fileID: 12840916908982362}
   - component: {fileID: 1324130319181625645}
+  - component: {fileID: 8275427265272429768}
   m_Layer: 0
   m_Name: white_rook
   m_TagString: Untagged
@@ -107,6 +108,12 @@ MonoBehaviour:
   blessed: 0
   loot: 1
   xp: 0
+  kills: 0
+  placeOnPiece: 0
+  ethereal: 0
+  size: 0
+  metaphysical: 0
+  wrathful: 0
 --- !u!114 &1324130319181625645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,9 +126,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rank: 0
+  ranged: 0
   directions:
   - {x: 1, y: 0, z: 0}
   - {x: -1, y: 0, z: 0}
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: -1, z: 0}
   distance: 0
+--- !u!114 &8275427265272429768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628042503045162094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960a415b6efb6ab49825fd9561868221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - {fileID: 7960397464015381804, guid: 930e22bda0ea84b49916a93269361b4c, type: 3}
+  - {fileID: 7960397464015381804, guid: 20d7bb1330b999a47a53f29b53bb872c, type: 3}
+  - {fileID: 4628042503045162094, guid: 26081b94d377289448ec2eba9f5152fa, type: 3}

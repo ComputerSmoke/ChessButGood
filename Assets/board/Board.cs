@@ -38,6 +38,10 @@ public abstract class Board : MonoBehaviour
         squareScript.board = this;
         squareScript.SetPos(x, y, z);
         square.layer = id;
+        if(y < minRow)
+            minRow = y;
+        if(y > maxRow)
+            maxRow = y;
     }
     public static Vector3 Pos(int col, int row) {
         return new Vector3((float)col - 3.5f, (float)row - 3.5f, 0);
@@ -54,6 +58,7 @@ public abstract class Board : MonoBehaviour
         piece.layer = id;
         Piece pieceScript = piece.GetComponent<Piece>();
         pieceScript.Resize(pieceScript.size);
+        ForceBlock((square.x, square.y, square.z), pieceScript.Size());
         piece.GetComponent<SpriteRenderer>().sortingLayerName = "Pieces";
         square.Place(piece);
         pieceScript.OnCreate();
@@ -70,6 +75,7 @@ public abstract class Board : MonoBehaviour
         }
         (int tx, int ty, int tz) = pos;
         Square targetSquare = ForceSquare((tx, ty, tz));
+        ForceBlock((tx, ty, tz), piece.Size());
         piece.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, prevPieceRotation));
         targetSquare.Arrive(piece);
     }
@@ -95,6 +101,15 @@ public abstract class Board : MonoBehaviour
         square.GetComponent<SpriteRenderer>().sortingLayerName = "Boards";
         AddSquare(square, x, y, z);
         return squares[pos];
+    }
+    private List<Square> ForceBlock((int, int, int) pos, int size) {
+        (int x, int y, int z) = pos;
+        List<Square> res = new();
+        for(int i = -(size-1)/2; i <= size/2; i++) {
+            for(int j = -(size-1)/2; j <= size/2; j++)
+                res.Add(ForceSquare((x+i, y+j, z)));
+        }
+        return res;
     }
     public bool AllPlaceOccupied(int color) {
         return OpenSquares(color).Count == 0;
@@ -159,5 +174,12 @@ public abstract class Board : MonoBehaviour
         Square target = ai.GetMove();
         if(target != piece.square)
             piece.Move(target);
+    }
+    public int Height() {
+        if(maxRow < 7 && minRow > 0)
+            return 4;
+        if(maxRow-4 > -(3 - minRow))
+            return maxRow-3;
+        return minRow+1;
     }
 }

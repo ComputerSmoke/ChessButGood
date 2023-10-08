@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1213483595775783769}
   - component: {fileID: 882510759603744178}
-  - component: {fileID: 3617282475456711273}
-  - component: {fileID: -3275859063572979303}
+  - component: {fileID: 9006892364350532244}
+  - component: {fileID: 3421522648878704946}
   m_Layer: 0
-  m_Name: suicide_bomber
+  m_Name: black_citadel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e6d512beb1914db428df29d1ef658d03, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16b134b3c9d486041b494b4f46a804a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3617282475456711273
+--- !u!114 &9006892364350532244
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,13 +95,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7960397464015381804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a445ab1e01723404f908545cb404a1ad, type: 3}
+  m_Script: {fileID: 11500000, guid: f4606c3edce253b4785af6a023ebac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rank: 0
   ranged: 0
-  direction: {x: 0, y: 1, z: 0}
---- !u!114 &-3275859063572979303
+  directions:
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: 1, z: 0}
+  distance: 3
+--- !u!114 &3421522648878704946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,22 +115,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7960397464015381804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88471ede9414d634892113ca04e13fd0, type: 3}
+  m_Script: {fileID: 11500000, guid: b2e900739ac233d4da257a158b6f589d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 0}
   moved: 0
-  color: 0
+  color: 1
   eatShadows: 0
   eatSouls: 0
   enableCastle: 0
-  blessed: 1
+  blessed: 0
   loot: 1
   xp: 0
   kills: 0
   placeOnPiece: 0
   ethereal: 0
-  size: 0
+  size: 1
   metaphysical: 0
   wrathful: 0
-  explosionRadius: 1
+  spawn: {fileID: 3969265967628548012, guid: 01c2c9f66f2ff174aafda7ab1b3beecb, type: 3}
+  spawnDirs:
+  - {x: 0, y: 1, z: 0}
+  - {x: -1, y: 1, z: 0}
+  - {x: 1, y: 1, z: 0}
