@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4923502871194464887}
   - component: {fileID: 3248696462627490122}
   - component: {fileID: 2986730373593776738}
+  - component: {fileID: 2186549073498021394}
   m_Layer: 0
   m_Name: black_pawn
   m_TagString: Untagged
@@ -98,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a445ab1e01723404f908545cb404a1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rank: 0
+  ranged: 0
   direction: {x: 0, y: -1, z: 0}
 --- !u!114 &2986730373593776738
 MonoBehaviour:
@@ -120,3 +123,24 @@ MonoBehaviour:
   blessed: 0
   loot: 1
   xp: 0
+  kills: 0
+  placeOnPiece: 0
+  ethereal: 0
+  size: 0
+  metaphysical: 0
+  wrathful: 0
+--- !u!114 &2186549073498021394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3969265967628548012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 960a415b6efb6ab49825fd9561868221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - {fileID: 7960397464015381804, guid: b6877774d2cd1c5458688dd82b97f323, type: 3}
+  - {fileID: 7960397464015381804, guid: bfb0e4b1d228d614491e49b09f2bf2aa, type: 3}

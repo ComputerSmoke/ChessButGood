@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1762314491132818387
+--- !u!1 &7960397464015381804
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5961715477203321089}
-  - component: {fileID: 7571084319801619401}
-  - component: {fileID: 4506689857153227705}
-  - component: {fileID: 8919082750669661121}
-  - component: {fileID: 6294394683324060348}
+  - component: {fileID: 1213483595775783769}
+  - component: {fileID: 882510759603744178}
+  - component: {fileID: 3617282475456711273}
+  - component: {fileID: -3275859063572979303}
   m_Layer: 0
-  m_Name: white_pawn
+  m_Name: suicide_bomber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5961715477203321089
+--- !u!4 &1213483595775783769
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762314491132818387}
+  m_GameObject: {fileID: 7960397464015381804}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8454347, y: -1.492135, z: 0}
+  m_LocalPosition: {x: -5.8681846, y: -3.927128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7571084319801619401
+--- !u!212 &882510759603744178
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762314491132818387}
+  m_GameObject: {fileID: 7960397464015381804}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,24 +75,24 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c87061259e5c0e34c918ffd1d5ff54b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6d512beb1914db428df29d1ef658d03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.94957983, y: 1}
+  m_Size: {x: 1.03, y: 1.15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4506689857153227705
+--- !u!114 &3617282475456711273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762314491132818387}
+  m_GameObject: {fileID: 7960397464015381804}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a445ab1e01723404f908545cb404a1ad, type: 3}
@@ -102,26 +101,26 @@ MonoBehaviour:
   rank: 0
   ranged: 0
   direction: {x: 0, y: 1, z: 0}
---- !u!114 &8919082750669661121
+--- !u!114 &-3275859063572979303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762314491132818387}
+  m_GameObject: {fileID: 7960397464015381804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f60786954fe50438b7fbfb28ca6fbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 88471ede9414d634892113ca04e13fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 0}
   moved: 0
   color: 0
-  eatShadows: 1
+  eatShadows: 0
   eatSouls: 0
   enableCastle: 0
-  blessed: 0
-  loot: 1
+  blessed: 1
+  loot: 0
   xp: 0
   kills: 0
   placeOnPiece: 0
@@ -129,18 +128,4 @@ MonoBehaviour:
   size: 0
   metaphysical: 0
   wrathful: 0
---- !u!114 &6294394683324060348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762314491132818387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 960a415b6efb6ab49825fd9561868221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  options:
-  - {fileID: 7960397464015381804, guid: 12db3a6767744eb4a95402c407bb017b, type: 3}
-  - {fileID: 7960397464015381804, guid: d8ef2345fcbb0e546b6fbd122a7d6e1e, type: 3}
+  explosionRadius: 1

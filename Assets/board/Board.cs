@@ -57,6 +57,7 @@ public abstract class Board : MonoBehaviour
         piece.GetComponent<SpriteRenderer>().sortingLayerName = "Pieces";
         square.Place(piece);
         pieceScript.OnCreate();
+        pieceScript.xp = 2;//TODO: start xp at 0, high for testing
         GameObject xpIndicator = Instantiate(Game.initializer.xpIndicator, piece.transform);
         xpIndicator.transform.position = xpIndicator.transform.position + new Vector3(-0.25f, .25f, 0);
         return piece;

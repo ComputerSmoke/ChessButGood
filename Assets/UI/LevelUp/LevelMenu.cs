@@ -17,7 +17,7 @@ public class LevelMenu : MonoBehaviour
         buttons = new();
         for(int i = 0; i < options.Length; i++) {
             GameObject button = Instantiate(Game.initializer.levelupButton, canvas.transform);
-            button.transform.position += new Vector3(i%2, ((float)i)-.5f, 0);
+            button.transform.position += new Vector3(i%2, -((float)i)+1.5f, 0);
             UpgradeButton upgradeButton = button.GetComponent<UpgradeButton>();
             upgradeButton.piece = AttachedPiece();
             upgradeButton.upgrade = options[i];
