@@ -1,1 +1,7 @@
-A Unity implementation of Chess but Good. The project is in its very early stages, and many game mechanics are currently missing.
+A Unity implementation of Chess but Good. Currently locally playable with some features missing.
+
+Missing features:
+rules (the ones that get selected mid-game)
+Online multiplayer (and associated menus)
+local vs computer
+Declare winner of game
