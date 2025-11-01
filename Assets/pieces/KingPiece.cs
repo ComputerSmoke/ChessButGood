@@ -15,4 +15,12 @@ public class KingPiece : Piece
             base.Move(square);
     }
     //TODO: override death to make game loss
+    protected override void DieEffect(Piece killer)
+    {
+        int winner;
+        if (color == 0) winner = 1;
+        else if (color == 1) winner = 0;
+        else winner = 2;
+        Game.End(winner);
+    }
 }

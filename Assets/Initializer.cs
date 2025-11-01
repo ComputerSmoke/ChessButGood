@@ -50,8 +50,6 @@ public class Initializer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Game.whiteGold = 50;
-        Game.blackGold = 50;
         gameUI.SetActive(false);
         layerController = layerControllerObject.GetComponent<LayerController>();
         layerController.Init(mainCamera);
@@ -71,8 +69,8 @@ public class Initializer : MonoBehaviour
     }
     private void StartGame() {
         //TODO: reduce starting gold, high for testing
-        //Game.whiteGold = 20;
-        //Game.blackGold = 20;
+        Game.whiteGold = 2;
+        Game.blackGold = 2;
         Game.initializer = this;
         mainMenu.SetActive(false);
         gameUI.SetActive(true);
@@ -84,13 +82,6 @@ public class Initializer : MonoBehaviour
         Game.heaven.Init();
         Game.playing = true;
         layerController.SetLayer("Earth");
-    }
-    public void EndGame(int winner)
-    {
-        Game.playing = false;
-        gameUI.SetActive(false);
-        winScreen.SetActive(true);
-        Game.winner = winner;
     }
 
     // Update is called once per frame

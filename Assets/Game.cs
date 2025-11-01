@@ -145,4 +145,11 @@ public static class Game
         devilLander = piece;
         initializer.layerController.SetLayer("DevilChoice");
     }
+    public static void End(int winner)
+    {
+        playing = false;
+        initializer.gameUI.SetActive(false);
+        initializer.winScreen.SetActive(true);
+        Game.winner = winner;
+    }
 }

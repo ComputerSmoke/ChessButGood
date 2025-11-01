@@ -13,7 +13,7 @@ public class xpIndicator : Indicator
         return piece;
     }
     protected override int TargetAmount() {
-        if(AttachedPiece() == null)
+        if(AttachedPiece() == null || !AttachedPiece().gameObject.GetComponent<SpriteRenderer>().enabled)
             return 0;
         return AttachedPiece().xp;
     }
