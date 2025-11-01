@@ -21,6 +21,7 @@ public static class Game
     public static Board activeBoard;
     public static bool flip;
     public static Piece devilLander;
+    public static int winner;
 
     public static void Update(Board newActiveBoard)
     {

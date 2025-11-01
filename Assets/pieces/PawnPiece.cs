@@ -13,7 +13,7 @@ public class PawnPiece : Piece
             intermittent.triggers.Add(trigger);
         }
         base.Move(square);
-        if(!square.TryAdjacent(gameObject.GetComponent<Pawn>().direction, out Square adj)) {
+        if(square.piece == this && !square.TryAdjacent(gameObject.GetComponent<Pawn>().direction, out Square adj)) {
             //TODO: add option to promote to non-queen pieces, promote to demon in hell
             Object.Destroy(this.gameObject);
             if(color == 0) 

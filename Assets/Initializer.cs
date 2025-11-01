@@ -27,6 +27,7 @@ public class Initializer : MonoBehaviour
     public GameObject whiteSquareHeaven;
     public GameObject moveSignal;
     public GameObject mainMenu;
+    public GameObject winScreen;
     public Camera mainCamera;
     public GameObject layerControllerObject;
     public LayerController layerController;
@@ -83,6 +84,13 @@ public class Initializer : MonoBehaviour
         Game.heaven.Init();
         Game.playing = true;
         layerController.SetLayer("Earth");
+    }
+    public void EndGame(int winner)
+    {
+        Game.playing = false;
+        gameUI.SetActive(false);
+        winScreen.SetActive(true);
+        Game.winner = winner;
     }
 
     // Update is called once per frame
